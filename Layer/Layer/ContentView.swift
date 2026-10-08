@@ -1,10 +1,12 @@
 import SwiftUI
 import SwiftData
 
-// Just the shelf for now. Routine and Ask tabs come with the voice + assistant milestones.
 struct ContentView: View {
     var body: some View {
-        ShelfView()
+        TabView {
+            Tab("Shelf", systemImage: "square.stack.3d.up") { ShelfView() }
+            Tab("Routine", systemImage: "list.number") { RoutineView() }
+        }
     }
 }
 

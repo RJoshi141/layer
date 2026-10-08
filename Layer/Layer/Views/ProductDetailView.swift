@@ -3,6 +3,7 @@ import SwiftData
 
 struct ProductDetailView: View {
     @Bindable var product: Product
+    @Query private var shelf: [Product]
 
     private var references: [IngredientReference] {
         product.matchedKeys.compactMap { IngredientDatabase.shared.reference(for: $0) }
@@ -32,6 +33,22 @@ struct ProductDetailView: View {
                 Section("Actives") {
                     ForEach(product.statedActives, id: \.self) { Text($0).font(.subheadline.weight(.medium)) }
                     ForEach(actives) { IngredientRow(raw: $0.name, match: $0) }
+                }
+            }
+
+            // Same rules as the Routine tab, run against everything else on the shelf
+            let clashes = ConflictChecker.clashes(
+                of: product.routineItem,
+                with: shelf.filter { $0.persistentModelID != product.persistentModelID }.map(\.routineItem),
+                rules: IngredientDatabase.shared.rules
+            )
+            if !clashes.isEmpty {
+                Section {
+                    ForEach(clashes) { FindingRow(finding: $0) }
+                } header: {
+                    Text("Don't layer with")
+                } footer: {
+                    Text("Fine on different nights or in different routines.")
                 }
             }
 

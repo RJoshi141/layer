@@ -35,4 +35,19 @@ nonisolated enum ProductCategory: String, CaseIterable, Codable, Identifiable, S
         case .other: "square.dashed"
         }
     }
+
+    // Thinnest to thickest, sunscreen last
+    var layerRank: Int {
+        switch self {
+        case .cleanser: 0
+        case .mask: 1
+        case .toner: 2
+        case .serum: 3
+        case .treatment, .other: 4
+        case .eyeCream: 5
+        case .moisturizer: 6
+        case .oil: 7
+        case .sunscreen: 8
+        }
+    }
 }

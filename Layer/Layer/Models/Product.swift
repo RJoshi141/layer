@@ -18,6 +18,9 @@ final class Product {
     // Raw OCR, kept so we can re-parse when the parser gets smarter
     var rawLabelText: String
     var notes: String
+    // Which routines it's in. Defaults keep the SwiftData migration automatic.
+    var inAM: Bool = false
+    var inPM: Bool = false
 
     @Relationship(deleteRule: .nullify, inverse: \RoutineLog.products)
     var logs: [RoutineLog] = []
@@ -61,5 +64,26 @@ final class Product {
     var isExpired: Bool {
         guard let expiresAt else { return false }
         return expiresAt < .now
+    }
+
+    // Union of tags across recognized ingredients. This is what the conflict rules read.
+    var tags: Set<String> {
+        Set(matchedKeys.compactMap { IngredientDatabase.shared.reference(for: $0) }.flatMap(\.tags))
+    }
+
+    var routineItem: RoutineItem {
+        RoutineItem(
+            id: String(describing: persistentModelID),
+            name: name,
+            category: category,
+            tags: tags,
+            isExpired: isExpired
+        )
+    }
+
+    func isIn(_ period: RoutinePeriod) -> Bool { period == .am ? inAM : inPM }
+
+    func setIn(_ period: RoutinePeriod, _ value: Bool) {
+        if period == .am { inAM = value } else { inPM = value }
     }
 }
