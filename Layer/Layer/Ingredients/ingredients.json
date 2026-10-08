@@ -1,0 +1,979 @@
+[
+  {
+    "key": "retinol",
+    "name": "Retinol",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "Vitamin A that speeds up cell turnover. Start slow, use at night."
+  },
+  {
+    "key": "retinal",
+    "name": "Retinal",
+    "aliases": [
+      "Retinaldehyde"
+    ],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "One step closer to retinoic acid than retinol, so it works faster."
+  },
+  {
+    "key": "retinyl-palmitate",
+    "name": "Retinyl Palmitate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "A gentle retinoid ester. Mild and slow."
+  },
+  {
+    "key": "hydroxypinacolone-retinoate",
+    "name": "Hydroxypinacolone Retinoate",
+    "aliases": [
+      "Granactive Retinoid",
+      "HPR"
+    ],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "A newer retinoid that tends to be less irritating."
+  },
+  {
+    "key": "adapalene",
+    "name": "Adapalene",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "An acne-focused retinoid sold over the counter."
+  },
+  {
+    "key": "tretinoin",
+    "name": "Tretinoin",
+    "aliases": [
+      "Retinoic Acid"
+    ],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "Prescription-strength retinoid."
+  },
+  {
+    "key": "bakuchiol",
+    "name": "Bakuchiol",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "retinol-alternative"
+    ],
+    "summary": "Plant extract often used as a gentler retinol alternative. Not a retinoid."
+  },
+  {
+    "key": "glycolic-acid",
+    "name": "Glycolic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "aha",
+      "exfoliant"
+    ],
+    "summary": "The smallest AHA. Exfoliates the surface for glow and texture."
+  },
+  {
+    "key": "lactic-acid",
+    "name": "Lactic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "aha",
+      "exfoliant"
+    ],
+    "summary": "A gentler AHA that also hydrates."
+  },
+  {
+    "key": "mandelic-acid",
+    "name": "Mandelic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "aha",
+      "exfoliant"
+    ],
+    "summary": "A large, slow AHA. Good for sensitive skin."
+  },
+  {
+    "key": "salicylic-acid",
+    "name": "Salicylic Acid",
+    "aliases": [
+      "Beta Hydroxy Acid",
+      "BHA"
+    ],
+    "role": "active",
+    "tags": [
+      "bha",
+      "exfoliant"
+    ],
+    "summary": "Oil-soluble exfoliant that gets into pores. Good for blackheads."
+  },
+  {
+    "key": "betaine-salicylate",
+    "name": "Betaine Salicylate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "bha",
+      "exfoliant"
+    ],
+    "summary": "A milder BHA alternative to salicylic acid."
+  },
+  {
+    "key": "gluconolactone",
+    "name": "Gluconolactone",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "pha",
+      "exfoliant"
+    ],
+    "summary": "A PHA. Gentle exfoliation that also hydrates."
+  },
+  {
+    "key": "lactobionic-acid",
+    "name": "Lactobionic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "pha",
+      "exfoliant"
+    ],
+    "summary": "A PHA with antioxidant benefits."
+  },
+  {
+    "key": "papain",
+    "name": "Papain",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "enzyme"
+    ],
+    "summary": "Papaya enzyme that dissolves dead skin gently."
+  },
+  {
+    "key": "citric-acid",
+    "name": "Citric Acid",
+    "aliases": [],
+    "role": "base",
+    "tags": [
+      "ph-adjuster"
+    ],
+    "summary": "Usually just adjusts pH at tiny amounts. Not an exfoliant here."
+  },
+  {
+    "key": "ascorbic-acid",
+    "name": "Ascorbic Acid",
+    "aliases": [
+      "L-Ascorbic Acid",
+      "Vitamin C"
+    ],
+    "role": "active",
+    "tags": [
+      "vitamin-c",
+      "vitamin-c-pure"
+    ],
+    "summary": "Pure vitamin C. Brightens and protects, but it's acidic and unstable."
+  },
+  {
+    "key": "ethyl-ascorbic-acid",
+    "name": "3-O-Ethyl Ascorbic Acid",
+    "aliases": [
+      "Ethyl Ascorbic Acid"
+    ],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "A stable vitamin C derivative."
+  },
+  {
+    "key": "sodium-ascorbyl-phosphate",
+    "name": "Sodium Ascorbyl Phosphate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "A stable, gentle vitamin C derivative."
+  },
+  {
+    "key": "magnesium-ascorbyl-phosphate",
+    "name": "Magnesium Ascorbyl Phosphate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "A stable, gentle vitamin C derivative."
+  },
+  {
+    "key": "ascorbyl-glucoside",
+    "name": "Ascorbyl Glucoside",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "A stable vitamin C derivative."
+  },
+  {
+    "key": "tetrahexyldecyl-ascorbate",
+    "name": "Tetrahexyldecyl Ascorbate",
+    "aliases": [
+      "THD Ascorbate"
+    ],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "Oil-soluble vitamin C derivative."
+  },
+  {
+    "key": "niacinamide",
+    "name": "Niacinamide",
+    "aliases": [
+      "Nicotinamide",
+      "Vitamin B3"
+    ],
+    "role": "active",
+    "tags": [
+      "niacinamide"
+    ],
+    "summary": "Vitamin B3. Helps oil, redness, pores and the skin barrier."
+  },
+  {
+    "key": "azelaic-acid",
+    "name": "Azelaic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "azelaic"
+    ],
+    "summary": "Calms redness and helps with breakouts and dark spots."
+  },
+  {
+    "key": "benzoyl-peroxide",
+    "name": "Benzoyl Peroxide",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "benzoyl-peroxide"
+    ],
+    "summary": "Kills acne bacteria. Drying and can bleach fabric."
+  },
+  {
+    "key": "sulfur",
+    "name": "Sulfur",
+    "aliases": [
+      "Sulphur"
+    ],
+    "role": "active",
+    "tags": [
+      "sulfur"
+    ],
+    "summary": "Old-school acne spot treatment."
+  },
+  {
+    "key": "tranexamic-acid",
+    "name": "Tranexamic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "brightening"
+    ],
+    "summary": "Fades dark spots and discoloration."
+  },
+  {
+    "key": "alpha-arbutin",
+    "name": "Alpha-Arbutin",
+    "aliases": [
+      "Alpha Arbutin"
+    ],
+    "role": "active",
+    "tags": [
+      "brightening"
+    ],
+    "summary": "Fades dark spots."
+  },
+  {
+    "key": "kojic-acid",
+    "name": "Kojic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "brightening"
+    ],
+    "summary": "Fades dark spots. Can irritate some skin."
+  },
+  {
+    "key": "copper-tripeptide-1",
+    "name": "Copper Tripeptide-1",
+    "aliases": [
+      "GHK-Cu",
+      "Copper Peptide",
+      "Copper Peptides"
+    ],
+    "role": "active",
+    "tags": [
+      "peptide",
+      "copper-peptide"
+    ],
+    "summary": "Copper peptide for firmness and repair."
+  },
+  {
+    "key": "palmitoyl-pentapeptide-4",
+    "name": "Palmitoyl Pentapeptide-4",
+    "aliases": [
+      "Matrixyl"
+    ],
+    "role": "active",
+    "tags": [
+      "peptide"
+    ],
+    "summary": "Signal peptide for firmness."
+  },
+  {
+    "key": "acetyl-hexapeptide-8",
+    "name": "Acetyl Hexapeptide-8",
+    "aliases": [
+      "Argireline",
+      "Acetyl Hexapeptide-3"
+    ],
+    "role": "active",
+    "tags": [
+      "peptide"
+    ],
+    "summary": "Peptide marketed for expression lines."
+  },
+  {
+    "key": "water",
+    "name": "Water",
+    "aliases": [
+      "Aqua",
+      "Eau",
+      "Purified Water"
+    ],
+    "role": "base",
+    "tags": [],
+    "summary": "The base of most formulas."
+  },
+  {
+    "key": "glycerin",
+    "name": "Glycerin",
+    "aliases": [
+      "Glycerol",
+      "Glycerine"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Pulls water into skin. A cheap, excellent hydrator."
+  },
+  {
+    "key": "sodium-hyaluronate",
+    "name": "Sodium Hyaluronate",
+    "aliases": [
+      "Hyaluronic Acid",
+      "Sodium Hyaluronate Crosspolymer",
+      "Hydrolyzed Sodium Hyaluronate",
+      "Hydrolyzed Hyaluronic Acid"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Hyaluronic acid salt. Holds water in skin."
+  },
+  {
+    "key": "butylene-glycol",
+    "name": "Butylene Glycol",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Light humectant and solvent."
+  },
+  {
+    "key": "propanediol",
+    "name": "Propanediol",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Light humectant and solvent."
+  },
+  {
+    "key": "urea",
+    "name": "Urea",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Hydrates. At high % it also softens rough skin."
+  },
+  {
+    "key": "snail-secretion-filtrate",
+    "name": "Snail Secretion Filtrate",
+    "aliases": [
+      "Snail Mucin"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Snail mucin. Hydrating and soothing."
+  },
+  {
+    "key": "panthenol",
+    "name": "Panthenol",
+    "aliases": [
+      "Pro-Vitamin B5",
+      "D-Panthenol",
+      "Dexpanthenol"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Pro-vitamin B5. Soothes and hydrates."
+  },
+  {
+    "key": "allantoin",
+    "name": "Allantoin",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Soothes and softens."
+  },
+  {
+    "key": "centella-asiatica-extract",
+    "name": "Centella Asiatica Extract",
+    "aliases": [
+      "Cica",
+      "Centella Asiatica Leaf Extract"
+    ],
+    "role": "soothing",
+    "tags": [
+      "cica"
+    ],
+    "summary": "Cica. Calms irritated skin."
+  },
+  {
+    "key": "madecassoside",
+    "name": "Madecassoside",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [
+      "cica"
+    ],
+    "summary": "Purified compound from centella. Calming."
+  },
+  {
+    "key": "bisabolol",
+    "name": "Bisabolol",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [],
+    "summary": "From chamomile. Calming."
+  },
+  {
+    "key": "colloidal-oatmeal",
+    "name": "Avena Sativa Kernel Flour",
+    "aliases": [
+      "Colloidal Oatmeal",
+      "Avena Sativa (Oat) Kernel Flour"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Colloidal oatmeal. Soothes itchy, dry skin."
+  },
+  {
+    "key": "tocopherol",
+    "name": "Tocopherol",
+    "aliases": [
+      "Vitamin E",
+      "Tocopheryl Acetate"
+    ],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Vitamin E. Antioxidant that also stabilizes formulas."
+  },
+  {
+    "key": "ferulic-acid",
+    "name": "Ferulic Acid",
+    "aliases": [],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Boosts and stabilizes vitamin C."
+  },
+  {
+    "key": "resveratrol",
+    "name": "Resveratrol",
+    "aliases": [],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant from grapes."
+  },
+  {
+    "key": "green-tea-extract",
+    "name": "Camellia Sinensis Leaf Extract",
+    "aliases": [
+      "Green Tea Extract"
+    ],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Green tea. Antioxidant and calming."
+  },
+  {
+    "key": "ceramide-np",
+    "name": "Ceramide NP",
+    "aliases": [
+      "Ceramide 3"
+    ],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "A skin-identical lipid that repairs the barrier."
+  },
+  {
+    "key": "ceramide-ap",
+    "name": "Ceramide AP",
+    "aliases": [
+      "Ceramide 6 II"
+    ],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "A skin-identical lipid that repairs the barrier."
+  },
+  {
+    "key": "ceramide-eop",
+    "name": "Ceramide EOP",
+    "aliases": [
+      "Ceramide 1"
+    ],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "A skin-identical lipid that repairs the barrier."
+  },
+  {
+    "key": "cholesterol",
+    "name": "Cholesterol",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [],
+    "summary": "Barrier lipid that works with ceramides."
+  },
+  {
+    "key": "phytosphingosine",
+    "name": "Phytosphingosine",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "Ceramide building block."
+  },
+  {
+    "key": "squalane",
+    "name": "Squalane",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Lightweight oil that mimics skin's own."
+  },
+  {
+    "key": "dimethicone",
+    "name": "Dimethicone",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "silicone"
+    ],
+    "summary": "Silicone that smooths and locks in moisture."
+  },
+  {
+    "key": "petrolatum",
+    "name": "Petrolatum",
+    "aliases": [
+      "Petroleum Jelly",
+      "Vaseline"
+    ],
+    "role": "barrier",
+    "tags": [
+      "occlusive"
+    ],
+    "summary": "The strongest occlusive. Seals moisture in."
+  },
+  {
+    "key": "shea-butter",
+    "name": "Butyrospermum Parkii Butter",
+    "aliases": [
+      "Shea Butter",
+      "Butyrospermum Parkii (Shea) Butter"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Rich, softening plant butter."
+  },
+  {
+    "key": "caprylic-capric-triglyceride",
+    "name": "Caprylic/Capric Triglyceride",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Light emollient from coconut."
+  },
+  {
+    "key": "jojoba-oil",
+    "name": "Simmondsia Chinensis Seed Oil",
+    "aliases": [
+      "Jojoba Oil",
+      "Simmondsia Chinensis (Jojoba) Seed Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Jojoba oil. Close to skin's own sebum."
+  },
+  {
+    "key": "cetearyl-alcohol",
+    "name": "Cetearyl Alcohol",
+    "aliases": [],
+    "role": "base",
+    "tags": [
+      "fatty-alcohol"
+    ],
+    "summary": "A fatty alcohol that thickens. Not drying, despite the name."
+  },
+  {
+    "key": "cetyl-alcohol",
+    "name": "Cetyl Alcohol",
+    "aliases": [],
+    "role": "base",
+    "tags": [
+      "fatty-alcohol"
+    ],
+    "summary": "A fatty alcohol that thickens. Not drying, despite the name."
+  },
+  {
+    "key": "zinc-oxide",
+    "name": "Zinc Oxide",
+    "aliases": [],
+    "role": "sunscreen",
+    "tags": [
+      "spf-mineral"
+    ],
+    "summary": "Mineral UV filter. Broad spectrum."
+  },
+  {
+    "key": "titanium-dioxide",
+    "name": "Titanium Dioxide",
+    "aliases": [],
+    "role": "sunscreen",
+    "tags": [
+      "spf-mineral"
+    ],
+    "summary": "Mineral UV filter, mostly UVB."
+  },
+  {
+    "key": "avobenzone",
+    "name": "Butyl Methoxydibenzoylmethane",
+    "aliases": [
+      "Avobenzone"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVA filter."
+  },
+  {
+    "key": "octocrylene",
+    "name": "Octocrylene",
+    "aliases": [],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVB filter that also stabilizes avobenzone."
+  },
+  {
+    "key": "homosalate",
+    "name": "Homosalate",
+    "aliases": [],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVB filter."
+  },
+  {
+    "key": "octisalate",
+    "name": "Ethylhexyl Salicylate",
+    "aliases": [
+      "Octisalate"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVB filter."
+  },
+  {
+    "key": "bemotrizinol",
+    "name": "Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine",
+    "aliases": [
+      "Tinosorb S",
+      "Bemotrizinol"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "Modern broad-spectrum filter."
+  },
+  {
+    "key": "cocamidopropyl-betaine",
+    "name": "Cocamidopropyl Betaine",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Mild foaming cleanser."
+  },
+  {
+    "key": "sodium-cocoyl-isethionate",
+    "name": "Sodium Cocoyl Isethionate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleanser common in syndet bars."
+  },
+  {
+    "key": "sodium-laureth-sulfate",
+    "name": "Sodium Laureth Sulfate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Foaming cleanser. Milder than SLS."
+  },
+  {
+    "key": "sodium-lauryl-sulfate",
+    "name": "Sodium Lauryl Sulfate",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "harsh-surfactant"
+    ],
+    "summary": "Strong foaming cleanser. Can strip and irritate."
+  },
+  {
+    "key": "fragrance",
+    "name": "Fragrance",
+    "aliases": [
+      "Parfum",
+      "Perfume",
+      "Aroma",
+      "Fragrance (Parfum)"
+    ],
+    "role": "caution",
+    "tags": [
+      "fragrance"
+    ],
+    "summary": "Undisclosed scent blend. A common trigger for sensitive skin."
+  },
+  {
+    "key": "linalool",
+    "name": "Linalool",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "limonene",
+    "name": "Limonene",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Citrus fragrance compound and known allergen."
+  },
+  {
+    "key": "citronellol",
+    "name": "Citronellol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "geraniol",
+    "name": "Geraniol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "lavender-oil",
+    "name": "Lavandula Angustifolia Oil",
+    "aliases": [
+      "Lavender Oil",
+      "Lavandula Angustifolia (Lavender) Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Lavender oil. Smells nice, can irritate."
+  },
+  {
+    "key": "alcohol-denat",
+    "name": "Alcohol Denat.",
+    "aliases": [
+      "Alcohol Denat",
+      "Denatured Alcohol",
+      "SD Alcohol",
+      "SD Alcohol 40",
+      "Ethanol",
+      "Alcohol"
+    ],
+    "role": "caution",
+    "tags": [
+      "drying-alcohol"
+    ],
+    "summary": "Drying alcohol. Fine low in the list, rough near the top."
+  },
+  {
+    "key": "methylisothiazolinone",
+    "name": "Methylisothiazolinone",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "sensitizer"
+    ],
+    "summary": "Preservative with a high allergy rate."
+  },
+  {
+    "key": "phenoxyethanol",
+    "name": "Phenoxyethanol",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "The most common preservative. Well tolerated."
+  },
+  {
+    "key": "ethylhexylglycerin",
+    "name": "Ethylhexylglycerin",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative booster and light conditioner."
+  },
+  {
+    "key": "1-2-hexanediol",
+    "name": "1,2-Hexanediol",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Humectant that also helps preserve."
+  },
+  {
+    "key": "sodium-benzoate",
+    "name": "Sodium Benzoate",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Food-grade preservative."
+  },
+  {
+    "key": "potassium-sorbate",
+    "name": "Potassium Sorbate",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Food-grade preservative."
+  },
+  {
+    "key": "xanthan-gum",
+    "name": "Xanthan Gum",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Thickener."
+  },
+  {
+    "key": "carbomer",
+    "name": "Carbomer",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Gel thickener."
+  },
+  {
+    "key": "sodium-hydroxide",
+    "name": "Sodium Hydroxide",
+    "aliases": [],
+    "role": "base",
+    "tags": [
+      "ph-adjuster"
+    ],
+    "summary": "Adjusts pH. Fully neutralized in the formula."
+  },
+  {
+    "key": "disodium-edta",
+    "name": "Disodium EDTA",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Keeps minerals from destabilizing the formula."
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "retinoid-bp",
+    "tagsA": [
+      "retinoid"
+    ],
+    "tagsB": [
+      "benzoyl-peroxide"
+    ],
+    "severity": "caution",
+    "advice": "Benzoyl peroxide can break down some retinoids and the combo is very drying. Try BP in the morning and your retinoid at night."
+  },
+  {
+    "id": "retinoid-exfoliant",
+    "tagsA": [
+      "retinoid"
+    ],
+    "tagsB": [
+      "exfoliant"
+    ],
+    "severity": "caution",
+    "advice": "Both speed up turnover. Alternate nights instead of layering, especially while you're getting used to them."
+  },
+  {
+    "id": "retinoid-retinoid",
+    "tagsA": [
+      "retinoid"
+    ],
+    "tagsB": [
+      "retinoid"
+    ],
+    "severity": "caution",
+    "advice": "Two retinoids in one routine adds irritation without much extra benefit. Pick one."
+  },
+  {
+    "id": "exfoliant-exfoliant",
+    "tagsA": [
+      "exfoliant"
+    ],
+    "tagsB": [
+      "exfoliant"
+    ],
+    "severity": "caution",
+    "advice": "Two exfoliants in one routine is a common cause of irritation. Use one per routine."
+  },
+  {
+    "id": "vitc-exfoliant",
+    "tagsA": [
+      "vitamin-c-pure"
+    ],
+    "tagsB": [
+      "exfoliant"
+    ],
+    "severity": "caution",
+    "advice": "Both are acidic, so stacking them can sting. Try vitamin C in the morning and acids at night."
+  },
+  {
+    "id": "vitc-bp",
+    "tagsA": [
+      "vitamin-c-pure"
+    ],
+    "tagsB": [
+      "benzoyl-peroxide"
+    ],
+    "severity": "caution",
+    "advice": "Benzoyl peroxide can oxidize pure vitamin C. Split them between morning and night."
+  },
+  {
+    "id": "copper-vitc",
+    "tagsA": [
+      "copper-peptide"
+    ],
+    "tagsB": [
+      "vitamin-c-pure"
+    ],
+    "severity": "caution",
+    "advice": "Pure vitamin C can destabilize copper peptides. Use them in different routines."
+  },
+  {
+    "id": "copper-exfoliant",
+    "tagsA": [
+      "copper-peptide"
+    ],
+    "tagsB": [
+      "exfoliant"
+    ],
+    "severity": "caution",
+    "advice": "Low-pH acids can break down copper peptides. Use them in different routines."
+  },
+  {
+    "id": "bp-exfoliant",
+    "tagsA": [
+      "benzoyl-peroxide"
+    ],
+    "tagsB": [
+      "exfoliant"
+    ],
+    "severity": "caution",
+    "advice": "Very drying together. Use one per routine."
+  },
+  {
+    "id": "niacinamide-vitc",
+    "tagsA": [
+      "niacinamide"
+    ],
+    "tagsB": [
+      "vitamin-c"
+    ],
+    "severity": "fine",
+    "advice": "Fine together. The old 'they cancel out' advice came from tests on raw ingredients at high heat, not modern formulas."
+  },
+  {
+    "id": "retinoid-niacinamide",
+    "tagsA": [
+      "retinoid"
+    ],
+    "tagsB": [
+      "niacinamide"
+    ],
+    "severity": "fine",
+    "advice": "Good pairing. Niacinamide can take the edge off retinoid dryness."
+  }
+]
