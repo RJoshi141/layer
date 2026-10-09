@@ -35,6 +35,20 @@ struct INCIParserTests {
         ]
         #expect(INCIParser.parse(lines: lines) == ["Zinc Oxide 20%", "Water", "Squalane", "Tocopherol"])
     }
+
+    @Test func stitchesOverlappingPhotos() {
+        // Photo 1 cuts off mid-word, photo 2 overlaps and has the full name
+        let left = ["Water", "Glycerin", "Sodium Hyal"]
+        let right = ["Sodium Hyaluronate", "Panthenol", "Squalane"]
+        #expect(INCIParser.merge([left, right]) == ["Water", "Glycerin", "Sodium Hyaluronate", "Panthenol", "Squalane"])
+    }
+
+    @Test func keepsRealIngredientsThatShareAPrefix() {
+        // Not at a photo edge, so it's a real ingredient, not a cut-off fragment
+        let one = ["Water", "Sodium Hyaluronate", "Glycerin"]
+        let two = ["Sodium Hyaluronate Crosspolymer", "Panthenol"]
+        #expect(INCIParser.merge([one, two]).contains("Sodium Hyaluronate"))
+    }
 }
 
 @MainActor

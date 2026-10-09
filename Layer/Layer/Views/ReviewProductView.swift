@@ -76,6 +76,16 @@ struct ReviewProductView: View {
                     Text("\(matchedCount) recognized. Swipe to remove anything that isn't an ingredient.")
                 }
             }
+
+            // Handy when a scan goes sideways: shows exactly what OCR saw
+            Section {
+                DisclosureGroup("What the camera read") {
+                    Text(result.rawText)
+                        .font(.caption.monospaced())
+                        .foregroundStyle(.secondary)
+                        .textSelection(.enabled)
+                }
+            }
         }
         .navigationTitle("Review")
         .navigationBarTitleDisplayMode(.inline)

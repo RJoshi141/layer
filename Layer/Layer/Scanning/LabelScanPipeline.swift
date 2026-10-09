@@ -30,15 +30,18 @@ nonisolated struct LabelScanPipeline {
     var database: IngredientDatabase = .shared
 
     func run(images: [UIImage]) async throws -> ScanResult {
-        var lines: [String] = []
+        // OCR each photo separately, so the end of one angle doesn't get glued onto the start of the next
+        var perImage: [[String]] = []
         for image in images {
-            lines += try await TextRecognizer.lines(in: image)
+            perImage.append(try await TextRecognizer.lines(in: image))
         }
+        let lines = perImage.flatMap { $0 }
         guard !lines.isEmpty else { throw ScanError.noText }
-        let rawText = lines.joined(separator: "\n")
+        let rawText = perImage.map { $0.joined(separator: "\n") }.joined(separator: "\n\n---\n\n")
 
         // Ingredients never go through the LLM, so the list can't be hallucinated
-        let ingredients = INCIParser.parse(lines: lines).map {
+        let names = INCIParser.merge(perImage.map { INCIParser.parse(lines: $0) })
+        let ingredients = names.map {
             ParsedIngredient(raw: $0, match: database.match($0))
         }
 

@@ -20,6 +20,33 @@ nonisolated enum INCIParser {
             .filter { seen.insert($0.lowercased()).inserted }
     }
 
+    // Stitches lists from several photos of one bottle. Overlapping angles repeat names,
+    // and the photo edge cuts words in half ("Sodium Hyal" | "uronate"). Keep the whole version.
+    static func merge(_ lists: [[String]]) -> [String] {
+        guard lists.count > 1 else { return lists.first ?? [] }
+        let key = { (s: String) in IngredientDatabase.normalize(s) }
+
+        // Only items at a photo's edge can be cut off
+        var edges = Set<String>()
+        for list in lists {
+            if let first = list.first { edges.insert(key(first)) }
+            if let last = list.last { edges.insert(key(last)) }
+        }
+
+        var seen = Set<String>()
+        let all = lists.flatMap { $0 }.filter { seen.insert(key($0)).inserted }
+        let keys = all.map(key)
+
+        return all.filter { item in
+            let k = key(item)
+            guard edges.contains(k) else { return true }
+            let isFragment = keys.contains { other in
+                other != k && other.count > k.count && (other.hasPrefix(k) || other.hasSuffix(k))
+            }
+            return !isFragment
+        }
+    }
+
     // Rejoins words that OCR broke across lines. "Sodium Hyal-" + "uronate" → "Sodium Hyaluronate"
     static func joinLines(_ lines: [String]) -> String {
         var out = ""

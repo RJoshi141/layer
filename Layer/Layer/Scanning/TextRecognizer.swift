@@ -10,6 +10,8 @@ nonisolated enum TextRecognizer {
         request.recognitionLevel = .accurate
         // Language correction "fixes" INCI names into English words, so keep it off
         request.usesLanguageCorrection = false
+        // Default skips text under ~3% of image height. Ingredient print on a bottle is often smaller.
+        request.minimumTextHeightFraction = 0.008
 
         let observations = try await request.perform(
             on: cgImage,

@@ -3,6 +3,8 @@ import SwiftData
 
 struct RoutineView: View {
     @Query private var products: [Product]
+    @Query(sort: \RoutineLog.date, order: .reverse) private var logs: [RoutineLog]
+    @State private var isCheckingIn = false
     @State private var period: RoutinePeriod = Calendar.current.component(.hour, from: .now) < 15 ? .am : .pm
     @State private var isEditing = false
 
@@ -53,9 +55,18 @@ struct RoutineView: View {
                         }
                     }
                 }
+
+                if !logs.isEmpty {
+                    Section("Recent check-ins") {
+                        ForEach(logs.prefix(5)) { LogRow(log: $0) }
+                    }
+                }
             }
             .navigationTitle("Routine")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Check in", systemImage: "mic") { isCheckingIn = true }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Button("Edit") { isEditing = true }
                         .disabled(products.isEmpty)
@@ -63,6 +74,34 @@ struct RoutineView: View {
             }
             .sheet(isPresented: $isEditing) {
                 RoutineEditorView(period: period)
+            }
+            .sheet(isPresented: $isCheckingIn) {
+                CheckInView()
+            }
+        }
+    }
+}
+
+private struct LogRow: View {
+    let log: RoutineLog
+
+    private var summary: String {
+        let parts = log.skinFeel + log.reactions
+        return parts.isEmpty ? "\(log.products.count) products" : parts.joined(separator: " · ")
+    }
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: log.period == .am ? "sun.horizon" : "moon.stars")
+                .foregroundStyle(.secondary)
+                .frame(width: 26)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(log.date.formatted(.dateTime.weekday(.abbreviated).month().day()))
+                    .font(.subheadline.weight(.medium))
+                Text(summary)
+                    .font(.caption)
+                    .foregroundStyle(log.reactions.isEmpty ? Color.secondary : Color.orange)
+                    .lineLimit(2)
             }
         }
     }

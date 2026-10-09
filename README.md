@@ -26,7 +26,7 @@ SwiftUI · SwiftData · Vision (`RecognizeTextRequest`) · VisionKit document ca
 
 - [x] Label scanning, ingredient database, shelf
 - [x] Conflict checker and routine builder (rule-based, layering order by product type)
-- [ ] Voice check-ins ("used the retinol, skin feels tight")
+- [x] Voice check-ins with SpeechAnalyzer ("used the retinol, skin feels tight" → structured log)
 - [ ] Assistant with tool calling over your shelf and logs
 - [ ] App Intents, Siri, and a "tonight's routine" widget
 
