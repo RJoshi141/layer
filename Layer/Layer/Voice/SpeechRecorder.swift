@@ -80,7 +80,7 @@ final class SpeechRecorder {
             }
 
             try await analyzer.start(inputSequence: stream)
-            try startEngine(feeding: builder, as: format)
+            try await startEngine(feeding: builder, as: format)
             isRecording = true
         } catch {
             errorMessage = error.localizedDescription
@@ -110,13 +110,11 @@ final class SpeechRecorder {
         inputBuilder = nil
         resultsTask = nil
         isRecording = false
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        try? await Self.setSessionActive(false)
     }
 
-    private func startEngine(feeding builder: AsyncStream<AnalyzerInput>.Continuation, as format: AVAudioFormat) throws {
-        let session = AVAudioSession.sharedInstance()
-        try session.setCategory(.record, mode: .measurement, options: .duckOthers)
-        try session.setActive(true, options: .notifyOthersOnDeactivation)
+    private func startEngine(feeding builder: AsyncStream<AnalyzerInput>.Continuation, as format: AVAudioFormat) async throws {
+        try await Self.setSessionActive(true)
 
         let input = engine.inputNode
         let micFormat = input.outputFormat(forBus: 0)
@@ -125,6 +123,20 @@ final class SpeechRecorder {
         input.installTap(onBus: 0, bufferSize: 4096, format: micFormat, block: Self.makeTap(converter: converter, format: format, builder: builder))
         engine.prepare()
         try engine.start()
+    }
+
+    // Turning the audio session on or off can block for a moment while the system
+    // reroutes audio, so it runs on a background thread instead of freezing the UI
+    nonisolated private static func setSessionActive(_ active: Bool) async throws {
+        try await Task.detached(priority: .userInitiated) {
+            let session = AVAudioSession.sharedInstance()
+            if active {
+                try session.setCategory(.record, mode: .measurement, options: .duckOthers)
+                try session.setActive(true, options: .notifyOthersOnDeactivation)
+            } else {
+                try session.setActive(false, options: .notifyOthersOnDeactivation)
+            }
+        }.value
     }
 
     // Built in a nonisolated context on purpose: the tap fires on a realtime audio thread,
