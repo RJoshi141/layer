@@ -30,26 +30,33 @@ struct CheckInView: View {
                 case .review: reviewForm
                 }
             }
+            .pageBackground()
             .navigationTitle("Check in")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
+                // .cancellationAction forces a fixed circle in iOS 26, which mangled the text pill
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel", systemImage: "xmark") {
                         Task { await recorder.stop() }
                         dismiss()
                     }
+                    .buttonStyle(InkCircleStyle())
                 }
-                ToolbarItem(placement: .confirmationAction) {
+                .sharedBackgroundVisibility(.hidden)
+                ToolbarItem(placement: .topBarTrailing) {
                     switch stage {
                     case .compose:
                         Button("Next") { Task { await parse() } }
+                            .buttonStyle(InkPillStyle())
                             .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || recorder.isRecording)
                     case .review:
                         Button("Save", action: save)
+                            .buttonStyle(InkPillStyle())
                     case .parsing:
                         EmptyView()
                     }
                 }
+                .sharedBackgroundVisibility(.hidden)
             }
         }
     }
@@ -82,7 +89,7 @@ struct CheckInView: View {
             }
 
             if let error = recorder.errorMessage {
-                Text(error).font(.footnote).foregroundStyle(.red)
+                Text(error).font(.footnote).foregroundStyle(Theme.warning)
             }
 
             micButton
@@ -104,9 +111,9 @@ struct CheckInView: View {
         } label: {
             Image(systemName: recorder.isRecording ? "stop.fill" : "mic.fill")
                 .font(.title)
-                .foregroundStyle(.white)
+                .foregroundStyle(Theme.onInk)
                 .frame(width: 72, height: 72)
-                .background(recorder.isRecording ? Color.red : Color.accentColor, in: .circle)
+                .background(recorder.isRecording ? Theme.warning : Theme.ink, in: .circle)
                 .symbolEffect(.pulse, isActive: recorder.isRecording)
         }
         .disabled(!SpeechRecorder.isAvailable || recorder.isPreparing)

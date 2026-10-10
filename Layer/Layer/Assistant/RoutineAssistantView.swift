@@ -39,6 +39,7 @@ struct RoutineAssistantView: View {
                             SuggestionRow(suggestion: suggestion, isApplied: applied.contains(suggestion.id)) {
                                 if let action = suggestion.action { apply(action, for: suggestion.id) }
                             }
+                            .listRowSeparator(.hidden)
                         }
                     } header: {
                         Text("Review")
@@ -80,12 +81,14 @@ struct RoutineAssistantView: View {
                 }
             }
             .safeAreaInset(edge: .bottom) { inputBar }
+            .pageBackground()
             .navigationTitle("Routine review")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { dismiss() }.buttonStyle(InkPillStyle())
                 }
+                .sharedBackgroundVisibility(.hidden)
             }
             .task { refresh() }
         }
@@ -158,11 +161,11 @@ private struct SuggestionRow: View {
 
     private var style: (symbol: String, color: Color) {
         switch suggestion.kind {
-        case .fix: ("exclamationmark.triangle.fill", .orange)
-        case .swap: ("arrow.triangle.2.circlepath", .purple)
-        case .gap: ("plus.circle.fill", .blue)
-        case .tip: ("lightbulb.fill", .yellow)
-        case .good: ("checkmark.seal.fill", .green)
+        case .fix: ("exclamationmark.triangle", Theme.warning)
+        case .swap: ("arrow.triangle.2.circlepath", Theme.ink)
+        case .gap: ("plus.circle", Theme.olive)
+        case .tip: ("lightbulb", Theme.muted)
+        case .good: ("checkmark.seal", Theme.good)
         }
     }
 

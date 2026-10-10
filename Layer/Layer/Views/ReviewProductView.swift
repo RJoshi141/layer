@@ -133,6 +133,7 @@ struct ReviewProductView: View {
                         }
                 }
                 .onDelete { ingredients.remove(atOffsets: $0) }
+                .listRowSeparator(.hidden)
 
                 HStack {
                     TextField("Add an ingredient", text: $newIngredient)
@@ -163,13 +164,16 @@ struct ReviewProductView: View {
                 }
             }
         }
+        .pageBackground()
         .navigationTitle(existing == nil ? "Review" : "Edit")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .confirmationAction) {
+            ToolbarItem(placement: .topBarTrailing) {
                 Button("Save", action: save)
+                    .buttonStyle(InkPillStyle())
                     .disabled(name.trimmingCharacters(in: .whitespaces).isEmpty)
             }
+            .sharedBackgroundVisibility(.hidden)
         }
     }
 
@@ -235,7 +239,7 @@ struct ReviewProductView: View {
                                         .clipShape(.rect(cornerRadius: 10))
                                         .overlay {
                                             RoundedRectangle(cornerRadius: 10)
-                                                .strokeBorder(option.id == selectedPhotoID ? Color.accentColor : .clear, lineWidth: 2)
+                                                .strokeBorder(option.id == selectedPhotoID ? Theme.ink : .clear, lineWidth: 2)
                                         }
                                 }
                                 .buttonStyle(.plain)

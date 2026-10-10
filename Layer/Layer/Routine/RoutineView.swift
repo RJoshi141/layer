@@ -25,76 +25,49 @@ struct RoutineView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                Section {
-                    Picker("Routine", selection: $period) {
-                        Text("Morning").tag(RoutinePeriod.am)
-                        Text("Night").tag(RoutinePeriod.pm)
-                    }
-                    .pickerStyle(.segmented)
-                    .listRowBackground(Color.clear)
-                    .listRowInsets(EdgeInsets())
-                }
+            ScrollView {
+                VStack(alignment: .leading, spacing: 28) {
+                    header
+                    periodTabs
 
-                if !products.isEmpty {
-                    Section {
-                        Button {
-                            isReviewing = true
-                        } label: {
-                            Label {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text("Review this routine").font(.headline)
-                                    Text("Improvements, swaps and what each step does")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
-                                }
-                            } icon: {
-                                Image(systemName: "sparkles").foregroundStyle(.tint)
+                    if steps.isEmpty {
+                        emptyState
+                    } else {
+                        stepList
+                        if !findings.isEmpty {
+                            VStack(alignment: .leading, spacing: 12) {
+                                TwoToneTitle(top: "Heads", bottom: "Up", size: 26)
+                                ForEach(findings) { FindingRow(finding: $0) }
                             }
                         }
-                        .foregroundStyle(.primary)
-                    }
-                }
-
-                if steps.isEmpty {
-                    ContentUnavailableView {
-                        Label("No \(period == .am ? "morning" : "night") routine yet", systemImage: period == .am ? "sun.horizon" : "moon.stars")
-                    } description: {
-                        Text("Pick products from your shelf and Layer will put them in order.")
-                    } actions: {
-                        Button("Build routine") { isEditing = true }
-                            .buttonStyle(.borderedProminent)
-                    }
-                    .listRowBackground(Color.clear)
-                } else {
-                    if !findings.isEmpty {
-                        Section("Heads up") {
-                            ForEach(findings) { FindingRow(finding: $0) }
-                        }
                     }
 
-                    Section("Steps") {
-                        ForEach(Array(steps.enumerated()), id: \.element.id) { index, product in
-                            StepRow(number: index + 1, product: product)
-                        }
-                    }
-                }
+                    if !products.isEmpty { reviewCard }
 
-                if !logs.isEmpty {
-                    Section("Recent check-ins") {
-                        ForEach(logs.prefix(5)) { LogRow(log: $0) }
-                    }
+                    if !logs.isEmpty { checkIns }
                 }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 32)
+                .animation(.snappy, value: period)
             }
-            .navigationTitle("Routine")
+            .pageBackground()
             .toolbar {
+                // Same layout as Shelf: one action left, one action + wordmark right
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Check in", systemImage: "mic") { isCheckingIn = true }
+                        .buttonStyle(InkCircleStyle())
                 }
+                .sharedBackgroundVisibility(.hidden)
                 ToolbarItem(placement: .primaryAction) {
-                    Button("Edit") { isEditing = true }
+                    Button("Edit routine", systemImage: "pencil") { isEditing = true }
+                        .buttonStyle(InkCircleStyle())
                         .disabled(products.isEmpty)
                 }
+                .sharedBackgroundVisibility(.hidden)
+                ToolbarItem(placement: .topBarTrailing) {
+                    Wordmark()
+                }
+                .sharedBackgroundVisibility(.hidden)
             }
             .sheet(isPresented: $isEditing) {
                 RoutineEditorView(period: period)
@@ -104,6 +77,111 @@ struct RoutineView: View {
             }
             .sheet(isPresented: $isReviewing) {
                 RoutineAssistantView(period: period)
+            }
+        }
+    }
+
+    // MARK: - Sections
+
+    private var header: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            TwoToneTitle(top: period == .am ? "Your morning" : "Your nighttime", bottom: "Ritual", size: 40)
+            Text(steps.isEmpty ? "Nothing here yet" : "\(steps.count) steps, in layering order")
+                .font(Theme.caption)
+                .foregroundStyle(Theme.muted)
+        }
+        .padding(.top, 4)
+    }
+
+    // Underlined text tabs, like the reference's "Product Details / Key Benefits"
+    private var periodTabs: some View {
+        HStack(spacing: 24) {
+            ForEach([RoutinePeriod.am, .pm], id: \.self) { option in
+                Button {
+                    period = option
+                } label: {
+                    VStack(spacing: 6) {
+                        HStack(spacing: 6) {
+                            Image(systemName: option == .am ? "sun.max" : "moon")
+                            Text(option == .am ? "Morning" : "Night")
+                        }
+                        .font(.system(size: 15, weight: period == option ? .semibold : .regular))
+                        .foregroundStyle(period == option ? Theme.ink : Theme.muted)
+                        Rectangle()
+                            .fill(period == option ? Theme.ink : .clear)
+                            .frame(height: 1.5)
+                    }
+                    .fixedSize()
+                }
+                .buttonStyle(.plain)
+                .accessibilityAddTraits(period == option ? .isSelected : [])
+            }
+            Spacer()
+        }
+    }
+
+    private var stepList: some View {
+        VStack(spacing: 4) {
+            ForEach(Array(steps.enumerated()), id: \.element.id) { index, product in
+                StepRow(number: index + 1, product: product)
+            }
+        }
+    }
+
+    private var emptyState: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 18) {
+                LayerIcon(name: "rinse", size: 34)
+                LayerIcon(name: "serum", size: 34)
+                LayerIcon(name: "jar", size: 34)
+                LayerIcon(name: period == .am ? "sunscreen" : "mask", size: 34)
+            }
+            .foregroundStyle(Theme.ink.opacity(0.6))
+            Text("Pick products from your shelf and Layer puts them in the right order.")
+                .font(Theme.body)
+                .foregroundStyle(Theme.muted)
+            Button("Build this routine") { isEditing = true }
+                .buttonStyle(OutlineButtonStyle())
+                .disabled(products.isEmpty)
+        }
+        .padding(20)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Theme.card, in: .rect(cornerRadius: 24))
+    }
+
+    // Olive feature card that opens the assistant
+    private var reviewCard: some View {
+        Button {
+            isReviewing = true
+        } label: {
+            HStack(alignment: .top, spacing: 14) {
+                LayerIcon(name: "glow", size: 28)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Review this routine")
+                        .font(.system(size: 17, weight: .semibold))
+                    Text("Improvements, swaps and what each step does")
+                        .font(Theme.caption)
+                        .opacity(0.85)
+                }
+                Spacer(minLength: 0)
+                Image(systemName: "arrow.up.right")
+                    .font(.system(size: 14, weight: .light))
+            }
+            .foregroundStyle(Theme.oliveText)
+            .padding(18)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Theme.olive, in: .rect(cornerRadius: 22))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var checkIns: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            TwoToneTitle(top: "Recent", bottom: "Check-ins", size: 26)
+            VStack(spacing: 4) {
+                ForEach(logs.prefix(5)) { log in
+                    LogRow(log: log)
+                }
             }
         }
     }
@@ -118,19 +196,22 @@ private struct LogRow: View {
     }
 
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: log.period == .am ? "sun.horizon" : "moon.stars")
-                .foregroundStyle(.secondary)
-                .frame(width: 26)
+        HStack(spacing: 14) {
+            Image(systemName: log.period == .am ? "sun.max" : "moon")
+                .foregroundStyle(Theme.muted)
+                .frame(width: 22)
             VStack(alignment: .leading, spacing: 2) {
-                Text(log.date.formatted(.dateTime.weekday(.abbreviated).month().day()))
-                    .font(.subheadline.weight(.medium))
+                Text(log.date.formatted(.dateTime.weekday(.wide).month().day()))
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundStyle(Theme.ink)
                 Text(summary)
-                    .font(.caption)
-                    .foregroundStyle(log.reactions.isEmpty ? Color.secondary : Color.orange)
+                    .font(Theme.caption)
+                    .foregroundStyle(log.reactions.isEmpty ? Theme.muted : Theme.warning)
                     .lineLimit(2)
             }
+            Spacer()
         }
+        .padding(.vertical, 12)
     }
 }
 
@@ -139,43 +220,59 @@ private struct StepRow: View {
     let product: Product
 
     var body: some View {
-        HStack(spacing: 12) {
-            Text("\(number)")
-                .font(.subheadline.monospacedDigit().weight(.semibold))
-                .frame(width: 26, height: 26)
-                .background(.tint.opacity(0.15), in: .circle)
-                .foregroundStyle(.tint)
+        HStack(spacing: 14) {
+            IndexLabel(number: number)
+                .frame(width: 30, alignment: .leading)
+            ProductThumbnail(product: product, size: 52)
             VStack(alignment: .leading, spacing: 2) {
                 Text(product.name)
-                Text(product.category.label)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .font(Theme.display(19))
+                    .foregroundStyle(Theme.ink)
+                    .lineLimit(2)
+                HStack(spacing: 5) {
+                    LayerIcon(name: product.category.iconName, size: 13)
+                    Text(product.category.label)
+                }
+                .font(Theme.caption)
+                .foregroundStyle(Theme.muted)
             }
+            Spacer(minLength: 0)
+            ExpiryDot(status: product.expiryStatus)
         }
+        .padding(.vertical, 12)
     }
 }
 
+// Used on the Routine tab and on product pages
 struct FindingRow: View {
     let finding: Finding
 
     private var style: (symbol: String, color: Color) {
         switch finding.severity {
-        case .avoid: ("xmark.octagon.fill", .red)
-        case .caution: ("exclamationmark.triangle.fill", .orange)
-        case .fine: ("checkmark.seal.fill", .green)
+        case .avoid: ("xmark.octagon", Theme.warning)
+        case .caution: ("exclamationmark.triangle", Theme.warning)
+        case .fine: ("checkmark.seal", Theme.good)
         }
     }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 10) {
-            Image(systemName: style.symbol).foregroundStyle(style.color)
+        HStack(alignment: .firstTextBaseline, spacing: 12) {
+            Image(systemName: style.symbol)
+                .font(.system(size: 15))
+                .foregroundStyle(style.color)
             VStack(alignment: .leading, spacing: 4) {
-                Text(finding.title).font(.subheadline.weight(.semibold))
+                Text(finding.title)
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundStyle(Theme.ink)
                 Text(finding.advice)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+                    .font(.system(size: 14))
+                    .foregroundStyle(Theme.muted)
+                    .fixedSize(horizontal: false, vertical: true)
             }
+            Spacer(minLength: 0)
         }
-        .padding(.vertical, 2)
+        .padding(16)
+        .background(Theme.card, in: .rect(cornerRadius: 18))
+        .accessibilityElement(children: .combine)
     }
 }

@@ -20,13 +20,17 @@ struct RoutineEditorView: View {
                             .foregroundStyle(.secondary)
                     }
                 }
+                .listRowSeparator(.hidden)
+                .listRowBackground(Theme.card)
             }
+            .pageBackground()
             .navigationTitle(period == .am ? "Morning routine" : "Night routine")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { dismiss() }.buttonStyle(InkPillStyle())
                 }
+                .sharedBackgroundVisibility(.hidden)
             }
         }
     }

@@ -30,9 +30,10 @@ struct AddProductView: View {
         NavigationStack {
             content
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel") { dismiss() }
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Cancel", systemImage: "xmark") { dismiss() }.buttonStyle(InkCircleStyle())
                     }
+                    .sharedBackgroundVisibility(.hidden)
                 }
         }
         .fullScreenCover(isPresented: $showCamera) {
@@ -109,8 +110,7 @@ struct AddProductView: View {
                 Label("Take photo", systemImage: "camera")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+            .buttonStyle(PrimaryButtonStyle())
             .disabled(!CameraCaptureView.isAvailable)
 
             HStack {
@@ -132,6 +132,7 @@ struct AddProductView: View {
             .controlSize(.large)
         }
         .padding()
+        .pageBackground()
         .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -181,8 +182,7 @@ struct AddProductView: View {
                 Label("Read label", systemImage: "text.magnifyingglass")
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+            .buttonStyle(PrimaryButtonStyle())
             .padding(.horizontal)
 
             Button {
@@ -197,6 +197,7 @@ struct AddProductView: View {
             .disabled(!CameraCaptureView.isAvailable || shots.count >= 4)
         }
         .padding(.vertical)
+        .pageBackground()
         .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         .navigationBarTitleDisplayMode(.inline)
     }
