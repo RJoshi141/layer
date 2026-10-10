@@ -3,10 +3,12 @@ import SwiftData
 
 struct RoutineView: View {
     @Query private var products: [Product]
+    @Environment(ProfileStore.self) private var profileStore
     @Query(sort: \RoutineLog.date, order: .reverse) private var logs: [RoutineLog]
     @State private var isCheckingIn = false
     @State private var period: RoutinePeriod = Calendar.current.component(.hour, from: .now) < 15 ? .am : .pm
     @State private var isEditing = false
+    @State private var isReviewing = false
 
     // Order comes from category, so we never have to store or drag-sort it
     private var steps: [Product] {
@@ -16,7 +18,9 @@ struct RoutineView: View {
     }
 
     private var findings: [Finding] {
-        ConflictChecker.check(steps.map(\.routineItem), period: period, rules: IngredientDatabase.shared.rules)
+        let items = steps.map(\.routineItem)
+        let personal = profileStore.profile.map { FitChecker(profile: $0).routineFindings(items) } ?? []
+        return personal + ConflictChecker.check(items, period: period, rules: IngredientDatabase.shared.rules)
     }
 
     var body: some View {
@@ -30,6 +34,26 @@ struct RoutineView: View {
                     .pickerStyle(.segmented)
                     .listRowBackground(Color.clear)
                     .listRowInsets(EdgeInsets())
+                }
+
+                if !products.isEmpty {
+                    Section {
+                        Button {
+                            isReviewing = true
+                        } label: {
+                            Label {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text("Review this routine").font(.headline)
+                                    Text("Improvements, swaps and what each step does")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            } icon: {
+                                Image(systemName: "sparkles").foregroundStyle(.tint)
+                            }
+                        }
+                        .foregroundStyle(.primary)
+                    }
                 }
 
                 if steps.isEmpty {
@@ -77,6 +101,9 @@ struct RoutineView: View {
             }
             .sheet(isPresented: $isCheckingIn) {
                 CheckInView()
+            }
+            .sheet(isPresented: $isReviewing) {
+                RoutineAssistantView(period: period)
             }
         }
     }

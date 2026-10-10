@@ -17,6 +17,14 @@ struct AddProductView: View {
     @State private var showCamera = false
     @State private var showDocScanner = false
     @State private var photoItems: [PhotosPickerItem] = []
+    @State private var scanned: [UIImage] = []        // kept so the review can offer them as product photos
+
+    // Set when rescanning a product that's already on the shelf
+    private let existing: Product?
+
+    init(existing: Product? = nil) {
+        self.existing = existing
+    }
 
     var body: some View {
         NavigationStack {
@@ -57,9 +65,9 @@ struct AddProductView: View {
             if shots.isEmpty { startView } else { shotsView }
         case .processing:
             ProgressView("Reading the label…")
-                .navigationTitle("Add product")
+                .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         case .review(let result):
-            ReviewProductView(result: result) { dismiss() }
+            ReviewProductView(result: result, existing: existing, photos: scanned) { dismiss() }
         case .failed(let message):
             ContentUnavailableView {
                 Label("Couldn't read that", systemImage: "text.viewfinder")
@@ -71,7 +79,7 @@ struct AddProductView: View {
                     stage = .pick
                 }
             }
-            .navigationTitle("Add product")
+            .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         }
     }
 
@@ -124,7 +132,7 @@ struct AddProductView: View {
             .controlSize(.large)
         }
         .padding()
-        .navigationTitle("Add product")
+        .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -159,7 +167,7 @@ struct AddProductView: View {
             .scrollIndicators(.hidden)
 
             Text(shots.count == 1
-                 ? "If the list wraps around the bottle, turn it and add another angle."
+                 ? "If the list wraps around the bottle, turn it and add another angle. A shot of the barcode helps Layer find the product photo."
                  : "\(shots.count) angles. Layer will stitch the list together.")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
@@ -189,7 +197,7 @@ struct AddProductView: View {
             .disabled(!CameraCaptureView.isAvailable || shots.count >= 4)
         }
         .padding(.vertical)
-        .navigationTitle("Add product")
+        .navigationTitle(existing == nil ? "Add product" : "Rescan label")
         .navigationBarTitleDisplayMode(.inline)
     }
 
@@ -207,6 +215,7 @@ struct AddProductView: View {
 
     private func process(_ images: [UIImage]) {
         guard !images.isEmpty else { return }
+        scanned = images
         stage = .processing
         Task {
             do {

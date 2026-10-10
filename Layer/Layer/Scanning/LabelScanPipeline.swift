@@ -4,7 +4,8 @@ import UIKit
 nonisolated struct ParsedIngredient: Identifiable, Sendable {
     let id = UUID()
     let raw: String
-    let match: IngredientReference?
+    var match: IngredientReference?
+    var isNew = false   // not in the database yet; gets learned when you save
 }
 
 nonisolated struct ScanResult: Sendable {
@@ -12,6 +13,7 @@ nonisolated struct ScanResult: Sendable {
     var ingredients: [ParsedIngredient]
     var rawText: String
     var usedOnDeviceModel: Bool
+    var barcode: String? = nil
 }
 
 nonisolated enum ScanError: LocalizedError {
@@ -41,18 +43,28 @@ nonisolated struct LabelScanPipeline {
 
         // Ingredients never go through the LLM, so the list can't be hallucinated
         let names = INCIParser.merge(perImage.map { INCIParser.parse(lines: $0) })
-        let ingredients = names.map {
-            ParsedIngredient(raw: $0, match: database.match($0))
+        let ingredients = names.map { raw -> ParsedIngredient in
+            if let known = database.match(raw) {
+                return ParsedIngredient(raw: raw, match: known)
+            }
+            // New to us: classify from the INCI name now, learn it when the user saves
+            return ParsedIngredient(raw: raw, match: IngredientClassifier.classify(raw), isNew: true)
+        }
+
+        // Barcode is how we find the real product photo later
+        var barcode: String?
+        for image in images where barcode == nil {
+            barcode = try? await BarcodeReader.firstProductCode(in: image)
         }
 
         // Rules first, then the model fills gaps. If the model fails we still have a usable draft.
-        var fields = HeuristicExtractor.extract(from: lines)
+        var fields = HeuristicExtractor.extract(perImage: perImage)
         var usedModel = false
         if LabelExtractor.isAvailable, let draft = try? await LabelExtractor().extract(from: rawText) {
             fields.fill(from: draft)
             usedModel = true
         }
 
-        return ScanResult(fields: fields, ingredients: ingredients, rawText: rawText, usedOnDeviceModel: usedModel)
+        return ScanResult(fields: fields, ingredients: ingredients, rawText: rawText, usedOnDeviceModel: usedModel, barcode: barcode)
     }
 }

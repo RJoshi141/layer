@@ -50,4 +50,13 @@ nonisolated enum ProductCategory: String, CaseIterable, Codable, Identifiable, S
         case .sunscreen: 8
         }
     }
+
+    // Typical period-after-opening when the label doesn't print one.
+    // Serums and treatments tend to hold actives that degrade faster once opened.
+    var typicalPAOMonths: Int {
+        switch self {
+        case .serum, .treatment, .eyeCream: 6
+        default: 12
+        }
+    }
 }

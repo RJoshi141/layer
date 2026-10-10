@@ -1,24 +1,39 @@
 import Foundation
+import Synchronization
 
 nonisolated final class IngredientDatabase: Sendable {
-    static let shared = IngredientDatabase(bundle: .main)
+    static let shared = IngredientDatabase(bundle: .main, learnedURL: defaultLearnedURL)
 
-    let ingredients: [IngredientReference]
+    // Ingredients learned from your scans live next to the app's data, not in the bundle
+    static var defaultLearnedURL: URL {
+        URL.applicationSupportDirectory.appending(path: "learned_ingredients.json")
+    }
+
+    let ingredients: [IngredientReference]   // bundled with the app
     let rules: [ConflictRule]
     private let byKey: [String: IngredientReference]
     private let index: [String: IngredientReference]   // normalized name or alias → reference
+    private let learned: Mutex<[String: IngredientReference]>   // learned key → reference
+    private let learnedURL: URL?
 
-    convenience init(bundle: Bundle) {
+    convenience init(bundle: Bundle, learnedURL: URL? = nil) {
+        let learned: [IngredientReference] = learnedURL
+            .flatMap { try? Data(contentsOf: $0) }
+            .flatMap { try? JSONDecoder().decode([IngredientReference].self, from: $0) } ?? []
         self.init(
             ingredients: Self.load("ingredients", from: bundle) ?? [],
-            rules: Self.load("conflict_rules", from: bundle) ?? []
+            rules: Self.load("conflict_rules", from: bundle) ?? [],
+            learned: learned,
+            learnedURL: learnedURL
         )
     }
 
-    init(ingredients: [IngredientReference], rules: [ConflictRule]) {
+    init(ingredients: [IngredientReference], rules: [ConflictRule], learned: [IngredientReference] = [], learnedURL: URL? = nil) {
         self.ingredients = ingredients
         self.rules = rules
         self.byKey = Dictionary(ingredients.map { ($0.key, $0) }, uniquingKeysWith: { first, _ in first })
+        self.learned = Mutex(Dictionary(learned.map { ($0.key, $0) }, uniquingKeysWith: { _, last in last }))
+        self.learnedURL = learnedURL
 
         var index: [String: IngredientReference] = [:]
         for ref in ingredients {
@@ -30,14 +45,51 @@ nonisolated final class IngredientDatabase: Sendable {
         self.index = index
     }
 
-    func reference(for key: String) -> IngredientReference? { byKey[key] }
+    var learnedIngredients: [IngredientReference] {
+        learned.withLock { Array($0.values) }
+    }
+
+    func reference(for key: String) -> IngredientReference? {
+        if let bundled = byKey[key] { return bundled }
+        return learned.withLock { $0[key] }
+    }
 
     // Labels are messy: "Water (Aqua)", "Water/Aqua/Eau", "Zinc Oxide 20%", plus OCR typos
     func match(_ raw: String) -> IngredientReference? {
-        for candidate in Self.candidates(for: raw) {
+        let candidates = Self.candidates(for: raw)
+        for candidate in candidates {
             if let hit = index[Self.normalize(candidate)] { return hit }
         }
+        // Something you scanned before that the bundled list didn't know
+        let learnedKeys = candidates.map(Self.learnedKey(for:))
+        let learnedHit = learned.withLock { dict -> IngredientReference? in
+            for key in learnedKeys {
+                if let hit = dict[key] { return hit }
+            }
+            return nil
+        }
+        if let learnedHit { return learnedHit }
         return fuzzyMatch(Self.normalize(raw))
+    }
+
+    // Adds (or reclassifies) ingredients and saves them, so the next scan already knows them
+    func learn(_ refs: [IngredientReference]) {
+        guard !refs.isEmpty else { return }
+        let snapshot = learned.withLock { dict -> [IngredientReference] in
+            for ref in refs { dict[ref.key] = ref }
+            return Array(dict.values)
+        }
+        guard let learnedURL else { return }
+        do {
+            try FileManager.default.createDirectory(at: learnedURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+            try JSONEncoder().encode(snapshot).write(to: learnedURL, options: .atomic)
+        } catch {
+            assertionFailure("Couldn't save learned ingredients: \(error)")
+        }
+    }
+
+    static func learnedKey(for raw: String) -> String {
+        "learned-" + normalize(raw).replacingOccurrences(of: " ", with: "-")
     }
 
     private func fuzzyMatch(_ normalized: String) -> IngredientReference? {

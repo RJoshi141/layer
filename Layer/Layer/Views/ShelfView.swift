@@ -1,10 +1,13 @@
 import SwiftUI
+import UIKit
 import SwiftData
 
 struct ShelfView: View {
     @Environment(\.modelContext) private var context
     @Query(sort: \Product.addedAt, order: .reverse) private var products: [Product]
+    @Environment(ProfileStore.self) private var profileStore
     @State private var isAdding = false
+    @State private var isEditingProfile = false
 
     var body: some View {
         NavigationStack {
@@ -32,12 +35,18 @@ struct ShelfView: View {
             .navigationTitle("Shelf")
             .navigationDestination(for: Product.self) { ProductDetailView(product: $0) }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("My skin", systemImage: "person.crop.circle") { isEditingProfile = true }
+                }
                 ToolbarItem(placement: .primaryAction) {
                     Button("Add product", systemImage: "plus") { isAdding = true }
                 }
             }
             .sheet(isPresented: $isAdding) {
                 AddProductView()
+            }
+            .sheet(isPresented: $isEditingProfile) {
+                OnboardingView(initial: profileStore.profile) { profileStore.save($0) }
             }
         }
     }
@@ -59,10 +68,7 @@ struct ProductRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            Image(systemName: product.category.symbol)
-                .font(.title3)
-                .foregroundStyle(.tint)
-                .frame(width: 32)
+            ProductThumbnail(product: product)
 
             VStack(alignment: .leading, spacing: 4) {
                 if !product.brand.isEmpty {
@@ -80,12 +86,42 @@ struct ProductRow: View {
 
             Spacer()
 
-            if product.isExpired {
+            switch product.expiryStatus {
+            case .expired:
                 Image(systemName: "exclamationmark.circle.fill")
                     .foregroundStyle(.orange)
                     .accessibilityLabel("Expired")
+            case .soon:
+                Image(systemName: "clock.badge.exclamationmark")
+                    .foregroundStyle(.yellow)
+                    .accessibilityLabel("Expires soon")
+            case .good, .notOpened:
+                EmptyView()
             }
         }
         .padding(.vertical, 2)
+    }
+}
+
+struct ProductThumbnail: View {
+    let product: Product
+    var size: CGFloat = 48
+
+    var body: some View {
+        Group {
+            if let data = product.imageData, let image = UIImage(data: data) {
+                Image(uiImage: image)
+                    .resizable()
+                    .scaledToFill()
+            } else {
+                Image(systemName: product.category.symbol)
+                    .font(.title3)
+                    .foregroundStyle(.tint)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(.tint.opacity(0.1))
+            }
+        }
+        .frame(width: size, height: size)
+        .clipShape(.rect(cornerRadius: 10))
     }
 }

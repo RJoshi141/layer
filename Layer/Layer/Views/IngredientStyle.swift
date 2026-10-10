@@ -10,7 +10,8 @@ extension IngredientReference.Role {
         case .antioxidant: .yellow
         case .sunscreen: .orange
         case .caution: .red
-        case .cleanser, .base, .preservative: .secondary
+        case .botanical: .mint
+        case .cleanser, .base, .preservative, .other: .secondary
         }
     }
 
@@ -26,6 +27,17 @@ extension IngredientReference.Role {
         case .base: "Base"
         case .preservative: "Preservative"
         case .caution: "Watch"
+        case .botanical: "Botanical"
+        case .other: "Other"
+        }
+    }
+
+    // Tags that come with a role when you reclassify an ingredient by hand
+    var defaultTags: [String] {
+        switch self {
+        case .hydrator: ["humectant"]
+        case .barrier: ["emollient"]
+        default: []
         }
     }
 }
@@ -46,8 +58,13 @@ struct IngredientRow: View {
                     Text(match.summary)
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                    if match.isLearned {
+                        Label("Learned from your scans", systemImage: "sparkles")
+                            .font(.caption2)
+                            .foregroundStyle(.tint)
+                    }
                 } else {
-                    Text("Not in database")
+                    Text("Couldn't identify this one")
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                 }
@@ -55,7 +72,7 @@ struct IngredientRow: View {
 
             Spacer()
 
-            if let match, match.role != .base, match.role != .preservative {
+            if let match, ![.base, .preservative, .other].contains(match.role) {
                 Text(match.role.label)
                     .font(.caption2.weight(.semibold))
                     .padding(.horizontal, 6)

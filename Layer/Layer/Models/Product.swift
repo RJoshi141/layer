@@ -1,6 +1,13 @@
 import Foundation
 import SwiftData
 
+nonisolated enum ExpiryStatus: Equatable, Sendable {
+    case notOpened
+    case good(until: Date)
+    case soon(until: Date)      // within 30 days
+    case expired(since: Date)
+}
+
 @Model
 final class Product {
     var name: String
@@ -21,6 +28,9 @@ final class Product {
     // Which routines it's in. Defaults keep the SwiftData migration automatic.
     var inAM: Bool = false
     var inPM: Bool = false
+    // Product photo (Open Beauty Facts or your own). Stored outside the main database file.
+    @Attribute(.externalStorage) var imageData: Data? = nil
+    var barcode: String? = nil
 
     @Relationship(deleteRule: .nullify, inverse: \RoutineLog.products)
     var logs: [RoutineLog] = []
@@ -55,15 +65,26 @@ final class Product {
         set { categoryRaw = newValue.rawValue }
     }
 
+    // When the label has no open-jar symbol, fall back to what's typical for the product type
+    var effectivePAOMonths: Int { paoMonths ?? category.typicalPAOMonths }
+    var paoIsEstimated: Bool { paoMonths == nil }
+
     // PAO clock starts when you open it, not when you buy it
     var expiresAt: Date? {
-        guard let openedAt, let paoMonths else { return nil }
-        return Calendar.current.date(byAdding: .month, value: paoMonths, to: openedAt)
+        guard let openedAt else { return nil }
+        return Calendar.current.date(byAdding: .month, value: effectivePAOMonths, to: openedAt)
+    }
+
+    var expiryStatus: ExpiryStatus {
+        guard let expiresAt else { return .notOpened }
+        if expiresAt < .now { return .expired(since: expiresAt) }
+        let soon = Calendar.current.date(byAdding: .day, value: 30, to: .now) ?? .now
+        return expiresAt < soon ? .soon(until: expiresAt) : .good(until: expiresAt)
     }
 
     var isExpired: Bool {
-        guard let expiresAt else { return false }
-        return expiresAt < .now
+        if case .expired = expiryStatus { return true }
+        return false
     }
 
     // Union of tags across recognized ingredients. This is what the conflict rules read.

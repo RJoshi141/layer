@@ -11,9 +11,13 @@ nonisolated struct IngredientReference: Codable, Hashable, Identifiable, Sendabl
 
     var id: String { key }
 
-    enum Role: String, Codable, Sendable {
+    enum Role: String, Codable, Sendable, CaseIterable {
         case active, hydrator, barrier, soothing, antioxidant, sunscreen, cleanser, base, preservative, caution
+        case botanical, other   // mostly for ingredients learned from scans
     }
+
+    // Learned from your scans rather than shipped with the app
+    var isLearned: Bool { key.hasPrefix("learned-") }
 }
 
 nonisolated struct ConflictRule: Codable, Identifiable, Sendable {

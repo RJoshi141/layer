@@ -60,3 +60,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# API keys stay on your Mac, never on GitHub
+Layer/Layer/Secrets.plist

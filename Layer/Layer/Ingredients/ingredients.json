@@ -975,5 +975,1560 @@
     "role": "base",
     "tags": [],
     "summary": "Keeps minerals from destabilizing the formula."
+  },
+  {
+    "key": "isopropyl-palmitate",
+    "name": "Isopropyl Palmitate",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Light emollient that makes formulas glide."
+  },
+  {
+    "key": "isopropyl-myristate",
+    "name": "Isopropyl Myristate",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Light emollient. Can clog pores for some people."
+  },
+  {
+    "key": "safflower-seed-oil",
+    "name": "Carthamus Tinctorius Seed Oil",
+    "aliases": [
+      "Carthamus Tinctorius (Safflower) Seed Oil",
+      "Safflower Seed Oil",
+      "Safflower Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Safflower oil. Rich in linoleic acid, light and non-greasy."
+  },
+  {
+    "key": "sunflower-seed-oil",
+    "name": "Helianthus Annuus Seed Oil",
+    "aliases": [
+      "Helianthus Annuus (Sunflower) Seed Oil",
+      "Sunflower Seed Oil",
+      "Sunflower Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Sunflower oil. Supports the skin barrier."
+  },
+  {
+    "key": "argan-oil",
+    "name": "Argania Spinosa Kernel Oil",
+    "aliases": [
+      "Argan Oil",
+      "Argania Spinosa (Argan) Kernel Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Argan oil. Nourishing, good for dry skin."
+  },
+  {
+    "key": "rosehip-oil",
+    "name": "Rosa Canina Fruit Oil",
+    "aliases": [
+      "Rosehip Oil",
+      "Rosa Canina Seed Oil",
+      "Rosa Rubiginosa Seed Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Rosehip oil. Rich in fatty acids."
+  },
+  {
+    "key": "sweet-almond-oil",
+    "name": "Prunus Amygdalus Dulcis Oil",
+    "aliases": [
+      "Sweet Almond Oil",
+      "Prunus Amygdalus Dulcis (Sweet Almond) Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Sweet almond oil. Softening."
+  },
+  {
+    "key": "olive-oil",
+    "name": "Olea Europaea Fruit Oil",
+    "aliases": [
+      "Olive Oil",
+      "Olea Europaea (Olive) Fruit Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Olive oil. Rich, best for dry skin."
+  },
+  {
+    "key": "coconut-oil",
+    "name": "Cocos Nucifera Oil",
+    "aliases": [
+      "Coconut Oil",
+      "Cocos Nucifera (Coconut) Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Coconut oil. Rich. Can clog pores for some people."
+  },
+  {
+    "key": "grapeseed-oil",
+    "name": "Vitis Vinifera Seed Oil",
+    "aliases": [
+      "Grape Seed Oil",
+      "Grapeseed Oil",
+      "Vitis Vinifera (Grape) Seed Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Grapeseed oil. Light, good for oily skin."
+  },
+  {
+    "key": "avocado-oil",
+    "name": "Persea Gratissima Oil",
+    "aliases": [
+      "Avocado Oil",
+      "Persea Gratissima (Avocado) Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Avocado oil. Rich and nourishing."
+  },
+  {
+    "key": "hemp-seed-oil",
+    "name": "Cannabis Sativa Seed Oil",
+    "aliases": [
+      "Hemp Seed Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Hemp seed oil. Light, high in linoleic acid."
+  },
+  {
+    "key": "marula-oil",
+    "name": "Sclerocarya Birrea Seed Oil",
+    "aliases": [
+      "Marula Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Marula oil. Light and absorbs fast."
+  },
+  {
+    "key": "squalene",
+    "name": "Squalene",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Skin's own oil. Squalane is the more stable version."
+  },
+  {
+    "key": "mineral-oil",
+    "name": "Paraffinum Liquidum",
+    "aliases": [
+      "Mineral Oil"
+    ],
+    "role": "barrier",
+    "tags": [
+      "occlusive"
+    ],
+    "summary": "Mineral oil. Very effective at sealing in moisture."
+  },
+  {
+    "key": "lanolin",
+    "name": "Lanolin",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "occlusive"
+    ],
+    "summary": "Very rich occlusive from sheep's wool."
+  },
+  {
+    "key": "beeswax",
+    "name": "Cera Alba",
+    "aliases": [
+      "Beeswax"
+    ],
+    "role": "barrier",
+    "tags": [
+      "occlusive"
+    ],
+    "summary": "Beeswax. Thickens and seals in moisture."
+  },
+  {
+    "key": "candelilla-wax",
+    "name": "Euphorbia Cerifera Wax",
+    "aliases": [
+      "Candelilla Wax",
+      "Euphorbia Cerifera (Candelilla) Wax"
+    ],
+    "role": "barrier",
+    "tags": [
+      "occlusive"
+    ],
+    "summary": "Plant wax that adds structure."
+  },
+  {
+    "key": "cocoa-butter",
+    "name": "Theobroma Cacao Seed Butter",
+    "aliases": [
+      "Cocoa Butter",
+      "Theobroma Cacao (Cocoa) Seed Butter"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Cocoa butter. Rich and softening."
+  },
+  {
+    "key": "mango-butter",
+    "name": "Mangifera Indica Seed Butter",
+    "aliases": [
+      "Mango Butter",
+      "Mangifera Indica (Mango) Seed Butter"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Mango butter. Rich and softening."
+  },
+  {
+    "key": "c12-15-alkyl-benzoate",
+    "name": "C12-15 Alkyl Benzoate",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Light emollient, common in sunscreens."
+  },
+  {
+    "key": "isohexadecane",
+    "name": "Isohexadecane",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Weightless emollient."
+  },
+  {
+    "key": "hydrogenated-polyisobutene",
+    "name": "Hydrogenated Polyisobutene",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Emollient that adds slip."
+  },
+  {
+    "key": "cyclopentasiloxane",
+    "name": "Cyclopentasiloxane",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Silicone that evaporates and leaves a silky feel."
+  },
+  {
+    "key": "dimethiconol",
+    "name": "Dimethiconol",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Silicone that smooths."
+  },
+  {
+    "key": "hydrogenated-lecithin",
+    "name": "Hydrogenated Lecithin",
+    "aliases": [
+      "Lecithin"
+    ],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Emulsifier that also supports the barrier."
+  },
+  {
+    "key": "ceramide-ns",
+    "name": "Ceramide NS",
+    "aliases": [
+      "Ceramide 2"
+    ],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "A skin-identical lipid that repairs the barrier."
+  },
+  {
+    "key": "ceramide-as",
+    "name": "Ceramide AS",
+    "aliases": [
+      "Ceramide 5"
+    ],
+    "role": "barrier",
+    "tags": [
+      "ceramide"
+    ],
+    "summary": "A skin-identical lipid that repairs the barrier."
+  },
+  {
+    "key": "linoleic-acid",
+    "name": "Linoleic Acid",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Fatty acid that supports the barrier."
+  },
+  {
+    "key": "stearic-acid",
+    "name": "Stearic Acid",
+    "aliases": [],
+    "role": "barrier",
+    "tags": [
+      "emollient"
+    ],
+    "summary": "Fatty acid that thickens and softens."
+  },
+  {
+    "key": "glyceryl-stearate",
+    "name": "Glyceryl Stearate",
+    "aliases": [
+      "Glyceryl Stearate SE"
+    ],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier that keeps oil and water mixed."
+  },
+  {
+    "key": "peg-100-stearate",
+    "name": "PEG-100 Stearate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "cetearyl-olivate",
+    "name": "Cetearyl Olivate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Olive-derived emulsifier."
+  },
+  {
+    "key": "sorbitan-olivate",
+    "name": "Sorbitan Olivate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Olive-derived emulsifier."
+  },
+  {
+    "key": "cetearyl-glucoside",
+    "name": "Cetearyl Glucoside",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Gentle sugar-based emulsifier."
+  },
+  {
+    "key": "polysorbate-20",
+    "name": "Polysorbate 20",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Helps oils mix into water."
+  },
+  {
+    "key": "polysorbate-60",
+    "name": "Polysorbate 60",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Helps oils mix into water."
+  },
+  {
+    "key": "polysorbate-80",
+    "name": "Polysorbate 80",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Helps oils mix into water."
+  },
+  {
+    "key": "steareth-2",
+    "name": "Steareth-2",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "steareth-21",
+    "name": "Steareth-21",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "ceteareth-20",
+    "name": "Ceteareth-20",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "peg-40-hydrogenated-castor-oil",
+    "name": "PEG-40 Hydrogenated Castor Oil",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Helps fragrance and oils dissolve in water."
+  },
+  {
+    "key": "potassium-cetyl-phosphate",
+    "name": "Potassium Cetyl Phosphate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier common in sunscreens."
+  },
+  {
+    "key": "polyglyceryl-3-diisostearate",
+    "name": "Polyglyceryl-3 Diisostearate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "arachidyl-glucoside",
+    "name": "Arachidyl Glucoside",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Emulsifier."
+  },
+  {
+    "key": "behenyl-alcohol",
+    "name": "Behenyl Alcohol",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "A fatty alcohol that thickens. Not drying."
+  },
+  {
+    "key": "stearyl-alcohol",
+    "name": "Stearyl Alcohol",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "A fatty alcohol that thickens. Not drying."
+  },
+  {
+    "key": "arachidyl-alcohol",
+    "name": "Arachidyl Alcohol",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "A fatty alcohol that thickens. Not drying."
+  },
+  {
+    "key": "glycol-distearate",
+    "name": "Glycol Distearate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Gives a pearly look."
+  },
+  {
+    "key": "ammonium-acryloyldimethyltaurate-vp-copolymer",
+    "name": "Ammonium Acryloyldimethyltaurate/VP Copolymer",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Gel thickener."
+  },
+  {
+    "key": "acrylates-c10-30",
+    "name": "Acrylates/C10-30 Alkyl Acrylate Crosspolymer",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Gel thickener."
+  },
+  {
+    "key": "sodium-polyacrylate",
+    "name": "Sodium Polyacrylate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Thickener."
+  },
+  {
+    "key": "polyacrylate-13",
+    "name": "Polyacrylate-13",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Thickener."
+  },
+  {
+    "key": "polyisobutene",
+    "name": "Polyisobutene",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Texture enhancer."
+  },
+  {
+    "key": "hydroxyethylcellulose",
+    "name": "Hydroxyethylcellulose",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Plant-based thickener."
+  },
+  {
+    "key": "cellulose-gum",
+    "name": "Cellulose Gum",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Plant-based thickener."
+  },
+  {
+    "key": "sclerotium-gum",
+    "name": "Sclerotium Gum",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Natural thickener."
+  },
+  {
+    "key": "silica",
+    "name": "Silica",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Absorbs oil and softens texture."
+  },
+  {
+    "key": "mica",
+    "name": "Mica",
+    "aliases": [
+      "CI 77019"
+    ],
+    "role": "base",
+    "tags": [],
+    "summary": "Mineral that adds shimmer."
+  },
+  {
+    "key": "iron-oxides",
+    "name": "Iron Oxides",
+    "aliases": [
+      "CI 77491",
+      "CI 77492",
+      "CI 77499"
+    ],
+    "role": "base",
+    "tags": [],
+    "summary": "Mineral pigments for tint."
+  },
+  {
+    "key": "sodium-citrate",
+    "name": "Sodium Citrate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Adjusts pH."
+  },
+  {
+    "key": "potassium-hydroxide",
+    "name": "Potassium Hydroxide",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Adjusts pH. Neutralized in the formula."
+  },
+  {
+    "key": "tromethamine",
+    "name": "Tromethamine",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Adjusts pH."
+  },
+  {
+    "key": "triethanolamine",
+    "name": "Triethanolamine",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Adjusts pH."
+  },
+  {
+    "key": "sodium-chloride",
+    "name": "Sodium Chloride",
+    "aliases": [
+      "Salt"
+    ],
+    "role": "base",
+    "tags": [],
+    "summary": "Salt. Thickens cleansers."
+  },
+  {
+    "key": "trisodium-ethylenediamine-disuccinate",
+    "name": "Trisodium Ethylenediamine Disuccinate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Keeps the formula stable."
+  },
+  {
+    "key": "sodium-phytate",
+    "name": "Sodium Phytate",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Keeps the formula stable."
+  },
+  {
+    "key": "dipropylene-glycol",
+    "name": "Dipropylene Glycol",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Solvent and light humectant."
+  },
+  {
+    "key": "isododecane",
+    "name": "Isododecane",
+    "aliases": [],
+    "role": "base",
+    "tags": [],
+    "summary": "Weightless solvent that evaporates."
+  },
+  {
+    "key": "pentylene-glycol",
+    "name": "Pentylene Glycol",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Humectant that also helps preserve."
+  },
+  {
+    "key": "sodium-pca",
+    "name": "Sodium PCA",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Part of skin's natural moisturizing factor."
+  },
+  {
+    "key": "trehalose",
+    "name": "Trehalose",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Sugar that holds onto water."
+  },
+  {
+    "key": "betaine",
+    "name": "Betaine",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Gentle humectant from beets."
+  },
+  {
+    "key": "sodium-lactate",
+    "name": "Sodium Lactate",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Humectant."
+  },
+  {
+    "key": "aloe",
+    "name": "Aloe Barbadensis Leaf Juice",
+    "aliases": [
+      "Aloe Vera",
+      "Aloe Barbadensis Leaf Extract",
+      "Aloe Barbadensis (Aloe Vera) Leaf Juice"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Aloe. Hydrating and soothing."
+  },
+  {
+    "key": "beta-glucan",
+    "name": "Beta-Glucan",
+    "aliases": [
+      "Beta Glucan"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Hydrates and soothes."
+  },
+  {
+    "key": "polyglutamic-acid",
+    "name": "Polyglutamic Acid",
+    "aliases": [
+      "Sodium Polyglutamate"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Holds even more water than hyaluronic acid."
+  },
+  {
+    "key": "hydrolyzed-collagen",
+    "name": "Hydrolyzed Collagen",
+    "aliases": [],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Film-forming hydrator."
+  },
+  {
+    "key": "honey",
+    "name": "Mel",
+    "aliases": [
+      "Honey"
+    ],
+    "role": "hydrator",
+    "tags": [
+      "humectant"
+    ],
+    "summary": "Honey. Humectant and soothing."
+  },
+  {
+    "key": "ectoin",
+    "name": "Ectoin",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Protects and calms stressed skin."
+  },
+  {
+    "key": "licorice-root",
+    "name": "Glycyrrhiza Glabra Root Extract",
+    "aliases": [
+      "Licorice Root Extract",
+      "Glycyrrhiza Glabra (Licorice) Root Extract",
+      "Dipotassium Glycyrrhizate"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Licorice. Calms redness and helps even tone."
+  },
+  {
+    "key": "chamomile",
+    "name": "Chamomilla Recutita Flower Extract",
+    "aliases": [
+      "Chamomile Extract",
+      "Chamomilla Recutita (Matricaria) Flower Extract"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Chamomile. Calming."
+  },
+  {
+    "key": "calendula",
+    "name": "Calendula Officinalis Flower Extract",
+    "aliases": [
+      "Calendula Extract"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Calendula. Soothing."
+  },
+  {
+    "key": "mugwort",
+    "name": "Artemisia Vulgaris Extract",
+    "aliases": [
+      "Mugwort Extract",
+      "Artemisia Princeps Leaf Extract"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Mugwort. Calms irritated skin."
+  },
+  {
+    "key": "propolis",
+    "name": "Propolis Extract",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Bee propolis. Soothing and antibacterial."
+  },
+  {
+    "key": "asiaticoside",
+    "name": "Asiaticoside",
+    "aliases": [],
+    "role": "soothing",
+    "tags": [
+      "cica"
+    ],
+    "summary": "Purified compound from centella. Calming."
+  },
+  {
+    "key": "heartleaf",
+    "name": "Houttuynia Cordata Extract",
+    "aliases": [
+      "Heartleaf Extract"
+    ],
+    "role": "soothing",
+    "tags": [],
+    "summary": "Heartleaf. Calms breakouts and redness."
+  },
+  {
+    "key": "ubiquinone",
+    "name": "Ubiquinone",
+    "aliases": [
+      "Coenzyme Q10",
+      "CoQ10"
+    ],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant."
+  },
+  {
+    "key": "caffeine",
+    "name": "Caffeine",
+    "aliases": [],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant that can reduce puffiness."
+  },
+  {
+    "key": "rosemary-extract",
+    "name": "Rosmarinus Officinalis Leaf Extract",
+    "aliases": [
+      "Rosemary Leaf Extract"
+    ],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant. Also keeps oils fresh."
+  },
+  {
+    "key": "ginseng",
+    "name": "Panax Ginseng Root Extract",
+    "aliases": [
+      "Ginseng Extract"
+    ],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant."
+  },
+  {
+    "key": "astaxanthin",
+    "name": "Astaxanthin",
+    "aliases": [],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Strong antioxidant."
+  },
+  {
+    "key": "glutathione",
+    "name": "Glutathione",
+    "aliases": [],
+    "role": "antioxidant",
+    "tags": [],
+    "summary": "Antioxidant that helps even tone."
+  },
+  {
+    "key": "ascorbyl-palmitate",
+    "name": "Ascorbyl Palmitate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "vitamin-c"
+    ],
+    "summary": "Oil-soluble vitamin C derivative. Mild."
+  },
+  {
+    "key": "malic-acid",
+    "name": "Malic Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "aha",
+      "exfoliant"
+    ],
+    "summary": "An AHA, usually a supporting player."
+  },
+  {
+    "key": "tartaric-acid",
+    "name": "Tartaric Acid",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "aha",
+      "exfoliant"
+    ],
+    "summary": "An AHA, usually a supporting player."
+  },
+  {
+    "key": "zinc-pca",
+    "name": "Zinc PCA",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "oil-control"
+    ],
+    "summary": "Helps balance oil."
+  },
+  {
+    "key": "palmitoyl-tripeptide-1",
+    "name": "Palmitoyl Tripeptide-1",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "peptide"
+    ],
+    "summary": "Signal peptide for firmness."
+  },
+  {
+    "key": "palmitoyl-tetrapeptide-7",
+    "name": "Palmitoyl Tetrapeptide-7",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "peptide"
+    ],
+    "summary": "Peptide that calms and firms."
+  },
+  {
+    "key": "adenosine",
+    "name": "Adenosine",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "peptide"
+    ],
+    "summary": "Smooths fine lines. Popular in K-beauty."
+  },
+  {
+    "key": "retinyl-retinoate",
+    "name": "Retinyl Retinoate",
+    "aliases": [],
+    "role": "active",
+    "tags": [
+      "retinoid"
+    ],
+    "summary": "A gentler retinoid hybrid."
+  },
+  {
+    "key": "decyl-glucoside",
+    "name": "Decyl Glucoside",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "coco-glucoside",
+    "name": "Coco-Glucoside",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "lauryl-glucoside",
+    "name": "Lauryl Glucoside",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "sodium-lauroyl-sarcosinate",
+    "name": "Sodium Lauroyl Sarcosinate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "sodium-cocoyl-glycinate",
+    "name": "Sodium Cocoyl Glycinate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "sodium-methyl-cocoyl-taurate",
+    "name": "Sodium Methyl Cocoyl Taurate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "disodium-laureth-sulfosuccinate",
+    "name": "Disodium Laureth Sulfosuccinate",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "cocamidopropyl-hydroxysultaine",
+    "name": "Cocamidopropyl Hydroxysultaine",
+    "aliases": [],
+    "role": "cleanser",
+    "tags": [
+      "surfactant"
+    ],
+    "summary": "Gentle cleansing agent."
+  },
+  {
+    "key": "octinoxate",
+    "name": "Ethylhexyl Methoxycinnamate",
+    "aliases": [
+      "Octinoxate"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVB filter."
+  },
+  {
+    "key": "oxybenzone",
+    "name": "Benzophenone-3",
+    "aliases": [
+      "Oxybenzone"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UV filter. Some people prefer to avoid it."
+  },
+  {
+    "key": "uvinul-a-plus",
+    "name": "Diethylamino Hydroxybenzoyl Hexyl Benzoate",
+    "aliases": [
+      "Uvinul A Plus"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "Modern UVA filter."
+  },
+  {
+    "key": "uvinul-t150",
+    "name": "Ethylhexyl Triazone",
+    "aliases": [
+      "Uvinul T 150"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "Modern UVB filter."
+  },
+  {
+    "key": "tinosorb-m",
+    "name": "Methylene Bis-Benzotriazolyl Tetramethylbutylphenol",
+    "aliases": [
+      "Tinosorb M",
+      "Bisoctrizole"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "Modern broad-spectrum filter."
+  },
+  {
+    "key": "mexoryl-xl",
+    "name": "Drometrizole Trisiloxane",
+    "aliases": [
+      "Mexoryl XL"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVA filter."
+  },
+  {
+    "key": "mexoryl-sx",
+    "name": "Terephthalylidene Dicamphor Sulfonic Acid",
+    "aliases": [
+      "Ecamsule",
+      "Mexoryl SX"
+    ],
+    "role": "sunscreen",
+    "tags": [
+      "spf-chemical"
+    ],
+    "summary": "UVA filter."
+  },
+  {
+    "key": "caprylyl-glycol",
+    "name": "Caprylyl Glycol",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Moisturizes and boosts preservatives."
+  },
+  {
+    "key": "hydroxyacetophenone",
+    "name": "Hydroxyacetophenone",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Antioxidant preservative booster."
+  },
+  {
+    "key": "chlorphenesin",
+    "name": "Chlorphenesin",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative."
+  },
+  {
+    "key": "benzyl-alcohol",
+    "name": "Benzyl Alcohol",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative. Not a drying alcohol at these levels."
+  },
+  {
+    "key": "dehydroacetic-acid",
+    "name": "Dehydroacetic Acid",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative."
+  },
+  {
+    "key": "sodium-dehydroacetate",
+    "name": "Sodium Dehydroacetate",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative."
+  },
+  {
+    "key": "methylparaben",
+    "name": "Methylparaben",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative. Well studied and low risk."
+  },
+  {
+    "key": "propylparaben",
+    "name": "Propylparaben",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Preservative."
+  },
+  {
+    "key": "sodium-anisate",
+    "name": "Sodium Anisate",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Gentle preservative."
+  },
+  {
+    "key": "sodium-levulinate",
+    "name": "Sodium Levulinate",
+    "aliases": [],
+    "role": "preservative",
+    "tags": [],
+    "summary": "Gentle preservative."
+  },
+  {
+    "key": "dmdm-hydantoin",
+    "name": "DMDM Hydantoin",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "sensitizer"
+    ],
+    "summary": "Formaldehyde-releasing preservative. Can sensitize."
+  },
+  {
+    "key": "imidazolidinyl-urea",
+    "name": "Imidazolidinyl Urea",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "sensitizer"
+    ],
+    "summary": "Formaldehyde-releasing preservative. Can sensitize."
+  },
+  {
+    "key": "isopropyl-alcohol",
+    "name": "Isopropyl Alcohol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "drying-alcohol"
+    ],
+    "summary": "Drying alcohol."
+  },
+  {
+    "key": "menthol",
+    "name": "Menthol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "essential-oil"
+    ],
+    "summary": "Cooling feel that can irritate."
+  },
+  {
+    "key": "witch-hazel",
+    "name": "Hamamelis Virginiana Water",
+    "aliases": [
+      "Witch Hazel",
+      "Hamamelis Virginiana (Witch Hazel) Water",
+      "Hamamelis Virginiana Leaf Extract"
+    ],
+    "role": "caution",
+    "tags": [
+      "astringent"
+    ],
+    "summary": "Witch hazel. Astringent, can be drying."
+  },
+  {
+    "key": "tea-tree-oil",
+    "name": "Melaleuca Alternifolia Leaf Oil",
+    "aliases": [
+      "Tea Tree Oil",
+      "Melaleuca Alternifolia (Tea Tree) Leaf Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Tea tree oil. Helps blemishes but can irritate."
+  },
+  {
+    "key": "peppermint-oil",
+    "name": "Mentha Piperita Oil",
+    "aliases": [
+      "Peppermint Oil",
+      "Mentha Piperita (Peppermint) Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Peppermint oil. Tingly and irritating for many."
+  },
+  {
+    "key": "eucalyptus-oil",
+    "name": "Eucalyptus Globulus Leaf Oil",
+    "aliases": [
+      "Eucalyptus Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Eucalyptus oil. Can irritate."
+  },
+  {
+    "key": "orange-peel-oil",
+    "name": "Citrus Aurantium Dulcis Peel Oil",
+    "aliases": [
+      "Orange Peel Oil",
+      "Citrus Aurantium Dulcis (Orange) Peel Oil",
+      "Sweet Orange Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Citrus oil. Can irritate in sun."
+  },
+  {
+    "key": "lemon-peel-oil",
+    "name": "Citrus Limon Peel Oil",
+    "aliases": [
+      "Lemon Peel Oil",
+      "Citrus Limon (Lemon) Peel Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Citrus oil. Can irritate in sun."
+  },
+  {
+    "key": "bergamot-oil",
+    "name": "Citrus Aurantium Bergamia Fruit Oil",
+    "aliases": [
+      "Bergamot Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Citrus oil. Can irritate in sun."
+  },
+  {
+    "key": "rosemary-oil",
+    "name": "Rosmarinus Officinalis Leaf Oil",
+    "aliases": [
+      "Rosemary Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Rosemary essential oil. Can irritate."
+  },
+  {
+    "key": "ylang-ylang",
+    "name": "Cananga Odorata Flower Oil",
+    "aliases": [
+      "Ylang Ylang Oil"
+    ],
+    "role": "caution",
+    "tags": [
+      "essential-oil",
+      "fragrance"
+    ],
+    "summary": "Fragrant oil. Can irritate."
+  },
+  {
+    "key": "citral",
+    "name": "Citral",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "eugenol",
+    "name": "Eugenol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "coumarin",
+    "name": "Coumarin",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "hexyl-cinnamal",
+    "name": "Hexyl Cinnamal",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "benzyl-salicylate",
+    "name": "Benzyl Salicylate",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "benzyl-benzoate",
+    "name": "Benzyl Benzoate",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "cinnamal",
+    "name": "Cinnamal",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "amyl-cinnamal",
+    "name": "Amyl Cinnamal",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "alpha-isomethyl-ionone",
+    "name": "Alpha-Isomethyl Ionone",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "farnesol",
+    "name": "Farnesol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "hydroxycitronellal",
+    "name": "Hydroxycitronellal",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "benzyl-cinnamate",
+    "name": "Benzyl Cinnamate",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
+  },
+  {
+    "key": "isoeugenol",
+    "name": "Isoeugenol",
+    "aliases": [],
+    "role": "caution",
+    "tags": [
+      "fragrance",
+      "fragrance-allergen"
+    ],
+    "summary": "Fragrance compound and known allergen."
   }
 ]

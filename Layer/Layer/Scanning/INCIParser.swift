@@ -86,6 +86,27 @@ nonisolated enum INCIParser {
         }
     }
 
+    // Everything on the label except the ingredient list: name, claims, directions, warnings.
+    // That's where the product type lives ("serum", "apply a few drops"), and INCI names can't mislead it.
+    static func textOutsideIngredients(_ text: String) -> String {
+        var headers: [Range<String.Index>] = []
+        var cursor = text.startIndex
+        while cursor < text.endIndex,
+              let r = text.range(of: headerPattern, options: .regularExpression, range: cursor..<text.endIndex) {
+            headers.append(r)
+            cursor = r.upperBound
+        }
+        guard let first = headers.first else { return text }
+
+        var outside = String(text[..<first.lowerBound])
+        for i in headers.indices {
+            let end = i + 1 < headers.count ? headers[i + 1].lowerBound : text.endIndex
+            let list = cutAtTerminator(text[headers[i].upperBound..<end])
+            outside += " " + text[list.endIndex..<end]
+        }
+        return outside
+    }
+
     static func cutAtTerminator(_ body: Substring) -> Substring {
         let cut = terminators
             .compactMap { body.range(of: $0, options: .caseInsensitive)?.lowerBound }
