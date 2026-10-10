@@ -12,7 +12,7 @@ Scan a label, understand what's inside, and build a morning and night routine th
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/hero.png" alt="Layer screens: shelf, product page, nighttime routine with review card, skin type question" />
+  <img src="docs/screenshots/hero.png" width="560" alt="Layer's shelf and a product page with a background-free product photo" />
 </p>
 
 ---
@@ -36,6 +36,36 @@ Under the hood it's three problems I care about: **pulling structured data out o
 | **Voice check-ins** | "Used the retinol, skin feels tight" becomes a structured log of products, skin feel and reactions. |
 | **Expiry tracking** | Uses the open-jar symbol from the label, or the typical shelf life for that product type. Warns before something turns. |
 | **Widget and sharing** | Tonight's routine on your home screen and lock screen. Share a routine as a styled card or a plain list. |
+
+## A closer look
+
+<table>
+  <tr>
+    <td width="42%" align="center"><img src="docs/screenshots/routine.png" width="270" alt="Nighttime routine in layering order with the routine check card" /></td>
+    <td>
+      <h3>Routines that put themselves in order</h3>
+      <p>Toggle a product into morning or night and it slots into layering order by type, thinnest to thickest. Clashing pairs show up as a heads up before you use them.</p>
+      <p>The <b>Routine check</b> card shows what's in tonight's routine at a glance and whether anything needs a look. Tap it for the assistant's review: what each step does, swaps for your skin, and gaps to fill.</p>
+      <p>Share any routine as a styled card or a plain list.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>Built around your skin</h3>
+      <p>A short intro explains what Layer does, then five quick questions: skin type, sensitivity, up to three concerns, experience with actives, and anything to avoid.</p>
+      <p>Those answers turn the same ingredient list into personal advice. A retinol can be "good for breakouts" for one person and "start slow" for someone new to actives. Drying alcohol near the top of the list or fragrance gets flagged when your skin is dry or sensitive.</p>
+    </td>
+    <td width="42%" align="center"><img src="docs/screenshots/onboarding.png" width="270" alt="Skin type question with Combination selected" /></td>
+  </tr>
+  <tr>
+    <td width="42%" align="center"><img src="docs/screenshots/widget.png" width="330" alt="Layer home screen widget showing tonight's three steps, next to the app icon" /></td>
+    <td>
+      <h3>Tonight's routine, without opening the app</h3>
+      <p>The widget flips between morning and night on its own and shows each step with its icon, in order. Expired products are struck through, and a clash turns the side panel rust.</p>
+      <p>Small, medium and lock screen sizes. The app writes a small snapshot to a shared App Group whenever the routine changes, so the widget never touches the database.</p>
+    </td>
+  </tr>
+</table>
 
 ## How scanning works
 
