@@ -11,6 +11,10 @@ Scan a label, understand what's inside, and build a morning and night routine th
   SwiftUI · SwiftData · Vision · Foundation Models · SpeechAnalyzer · WidgetKit · iOS 26
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/hero.png" alt="Layer screens: shelf, product page, nighttime routine with review card, skin type question" />
+</p>
+
 ---
 
 ## Why
