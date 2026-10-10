@@ -24,6 +24,11 @@ struct ContentView: View {
         .onChange(of: WidgetSnapshot.make(from: products), initial: true) { _, snapshot in
             WidgetSync.save(snapshot)
         }
+        // Any photo on white (older saves, or a store photo Vision missed earlier) gets lifted to clear.
+        // Reruns whenever a photo changes. Transparent ones are skipped, so it settles fast.
+        .task(id: products.map { $0.imageData?.count ?? 0 }) {
+            await BackgroundCleanup.run(products)
+        }
     }
 }
 
@@ -31,7 +36,7 @@ enum AppTab: CaseIterable {
     case shelf, routine
 
     var title: String { self == .shelf ? "Shelf" : "Routine" }
-    var icon: String { self == .shelf ? "jar" : "layers" }
+    var icon: String { self == .shelf ? "shelf" : "layers" }
 }
 
 // Custom tab bar: one espresso pill that glides between tabs
@@ -47,16 +52,16 @@ private struct TabPills: View {
                     selection = tab
                 } label: {
                     HStack(spacing: 8) {
-                        LayerIcon(name: tab.icon, size: 20)
+                        LayerIcon(name: tab.icon, size: tab == .shelf ? 32 : 20)   // shelf glyph is wide and short, so it needs more room to read the same size
                         Text(tab.title).font(.system(size: 15, weight: .medium))
                     }
-                    .foregroundStyle(isOn ? Theme.onInk : Theme.ink)
+                    .foregroundStyle(isOn ? Theme.onPrimary : Theme.ink)
                     .padding(.horizontal, 22)
                     .frame(height: 48)
                     .background {
                         if isOn {
                             Capsule()
-                                .fill(Theme.ink)
+                                .fill(Theme.primary)
                                 .matchedGeometryEffect(id: "selected", in: pill)
                         }
                     }
@@ -70,7 +75,7 @@ private struct TabPills: View {
         .background(Theme.card, in: .capsule)
         .shadow(color: .black.opacity(0.08), radius: 12, y: 4)
         .padding(.bottom, 6)
-        .animation(.snappy(duration: 0.25), value: selection)
+        .animation(.snappy(duration: 0.16), value: selection)
         .sensoryFeedback(.selection, trigger: selection)
     }
 }

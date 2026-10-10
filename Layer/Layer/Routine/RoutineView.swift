@@ -9,12 +9,19 @@ struct RoutineView: View {
     @State private var period: RoutinePeriod = Calendar.current.component(.hour, from: .now) < 15 ? .am : .pm
     @State private var isEditing = false
     @State private var isReviewing = false
+    @State private var sharing: RoutineSharePayload?
 
     // Order comes from category, so we never have to store or drag-sort it
-    private var steps: [Product] {
+    private var steps: [Product] { steps(for: period) }
+
+    private func steps(for period: RoutinePeriod) -> [Product] {
         products
             .filter { $0.isIn(period) }
             .sorted { $0.category.layerRank < $1.category.layerRank }
+    }
+
+    private func share(_ periods: [RoutinePeriod]) {
+        sharing = RoutineSharePayload.make(periods: periods) { steps(for: $0) }
     }
 
     private var findings: [Finding] {
@@ -78,6 +85,11 @@ struct RoutineView: View {
             .sheet(isPresented: $isReviewing) {
                 RoutineAssistantView(period: period)
             }
+            .sheet(item: $sharing) { payload in
+                ShareSheet(items: [payload.image, payload.text])
+                    .presentationDetents([.medium, .large])
+                    .ignoresSafeArea()
+            }
         }
     }
 
@@ -117,7 +129,25 @@ struct RoutineView: View {
                 .accessibilityAddTraits(period == option ? .isSelected : [])
             }
             Spacer()
+            shareMenu
         }
+    }
+
+    // Share the routine you're looking at, the other one, or both as one card
+    private var shareMenu: some View {
+        Menu {
+            Button("Morning routine", systemImage: "sun.max") { share([.am]) }
+            Button("Night routine", systemImage: "moon") { share([.pm]) }
+            Button("Morning and night", systemImage: "circle.lefthalf.filled") { share([.am, .pm]) }
+        } label: {
+            Label("Share", systemImage: "square.and.arrow.up")
+                .font(.system(size: 13, weight: .medium))
+                .foregroundStyle(Theme.ink)
+                .padding(.horizontal, 12)
+                .frame(height: 32)
+                .background(Theme.card, in: .capsule)
+        }
+        .disabled(products.isEmpty)
     }
 
     private var stepList: some View {
@@ -149,30 +179,74 @@ struct RoutineView: View {
         .background(Theme.card, in: .rect(cornerRadius: 24))
     }
 
-    // Olive feature card that opens the assistant
+    // Forest feature card that opens the assistant: a peek at the routine plus what needs a look
     private var reviewCard: some View {
-        Button {
+        let issues = findings.filter { $0.severity != .fine }.count
+        return Button {
             isReviewing = true
         } label: {
-            HStack(alignment: .top, spacing: 14) {
-                LayerIcon(name: "glow", size: 28)
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Review this routine")
-                        .font(.system(size: 17, weight: .semibold))
-                    Text("Improvements, swaps and what each step does")
-                        .font(Theme.caption)
-                        .opacity(0.85)
+            VStack(alignment: .leading, spacing: 18) {
+                HStack(spacing: 8) {
+                    Circle().fill(Theme.lime).frame(width: 6, height: 6)
+                    Text("ROUTINE CHECK")
+                        .font(.system(size: 10, weight: .semibold))
+                        .tracking(1.6)
+                        .foregroundStyle(Theme.lime)
                 }
-                Spacer(minLength: 0)
-                Image(systemName: "arrow.up.right")
-                    .font(.system(size: 14, weight: .light))
+
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Review your \(period == .am ? "morning" : "night")")
+                        .font(Theme.display(30))
+                    Text("What each step does, swaps for your skin, and anything worth fixing.")
+                        .font(.system(size: 13))
+                        .opacity(0.75)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+
+                HStack(spacing: 12) {
+                    // The products in this routine, stacked like a little shelf
+                    HStack(spacing: -12) {
+                        ForEach(steps.prefix(4)) { product in
+                            ProductThumbnail(product: product, size: 38)
+                                .clipShape(.circle)
+                                .overlay(Circle().strokeBorder(Theme.olive, lineWidth: 2))
+                        }
+                    }
+                    if steps.count > 4 {
+                        Text("+\(steps.count - 4)").font(.system(size: 12, weight: .medium)).opacity(0.75)
+                    }
+                    Spacer(minLength: 0)
+                    // Status pill: lime when balanced, rust dot when something needs a look
+                    HStack(spacing: 6) {
+                        if issues == 0 {
+                            Image(systemName: "checkmark").font(.system(size: 10, weight: .bold))
+                            Text(steps.isEmpty ? "Get ideas" : "Looks balanced")
+                        } else {
+                            Circle().fill(Theme.warning).frame(width: 7, height: 7)
+                            Text(issues == 1 ? "1 thing to check" : "\(issues) things to check")
+                        }
+                    }
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(issues == 0 ? Theme.onLime : Theme.ink)
+                    .padding(.horizontal, 12)
+                    .frame(height: 30)
+                    .background(issues == 0 ? Theme.lime : Theme.page, in: .capsule)
+                }
             }
             .foregroundStyle(Theme.oliveText)
-            .padding(18)
+            .padding(20)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Theme.olive, in: .rect(cornerRadius: 22))
+            .background(alignment: .bottomTrailing) {
+                // Big faint glow mark for texture
+                LayerIcon(name: "glow", size: 150)
+                    .foregroundStyle(Theme.lime.opacity(0.08))
+                    .offset(x: 30, y: 30)
+            }
+            .background(Theme.olive)
+            .clipShape(.rect(cornerRadius: 26))
         }
         .buttonStyle(.plain)
+        .accessibilityHint("Opens the routine assistant")
     }
 
     private var checkIns: some View {

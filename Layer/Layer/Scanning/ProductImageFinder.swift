@@ -68,12 +68,30 @@ nonisolated enum ProductImageFinder {
         }
         if !outcome.photos.isEmpty { outcome.notes = [] }
 
+        // Store photos sit on white. Lift every product out so it's transparent like your own cutout.
+        outcome.photos = await liftBackgrounds(outcome.photos)
+
         // Your own photo, cleaned up. Heavy Vision work, so off the main thread.
         if let photo = photos.first {
             let cutout = await Task.detached(priority: .userInitiated) { SubjectCutout.productShot(from: photo) }.value
             if let cutout { outcome.photos.append(FoundPhoto(image: cutout, source: "Your photo, background removed")) }
         }
         return outcome
+    }
+
+    // Runs in parallel off the main thread. Falls back to the original if Vision can't find the product.
+    private static func liftBackgrounds(_ photos: [FoundPhoto]) async -> [FoundPhoto] {
+        await withTaskGroup(of: (Int, FoundPhoto).self) { group in
+            for (index, photo) in photos.enumerated() {
+                group.addTask(priority: .userInitiated) {
+                    guard let clear = SubjectCutout.productShot(from: photo.image) else { return (index, photo) }
+                    return (index, FoundPhoto(image: clear, source: photo.source))
+                }
+            }
+            var lifted: [(Int, FoundPhoto)] = []
+            for await item in group { lifted.append(item) }
+            return lifted.sorted { $0.0 < $1.0 }.map(\.1)
+        }
     }
 
     // Lens results in their original order (best match first)
@@ -205,15 +223,22 @@ nonisolated private struct OBFProduct: Decodable {
 }
 
 extension UIImage {
-    // Small enough to keep in SwiftData without bloating it
+    // Small enough to keep in SwiftData without bloating it.
+    // Cutouts come back as PNG so their clear background survives (JPEG has no transparency).
     nonisolated func thumbnailJPEG(maxDimension: CGFloat = 900) -> Data? {
         let scale = min(1, maxDimension / max(size.width, size.height))
         let target = CGSize(width: size.width * scale, height: size.height * scale)
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
+        format.opaque = !hasAlpha
         let resized = UIGraphicsImageRenderer(size: target, format: format).image { _ in
             draw(in: CGRect(origin: .zero, size: target))
         }
-        return resized.jpegData(compressionQuality: 0.8)
+        return hasAlpha ? resized.pngData() : resized.jpegData(compressionQuality: 0.8)
+    }
+
+    nonisolated var hasAlpha: Bool {
+        guard let info = cgImage?.alphaInfo else { return false }
+        return ![.none, .noneSkipFirst, .noneSkipLast].contains(info)
     }
 }

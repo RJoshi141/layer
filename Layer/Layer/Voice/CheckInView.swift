@@ -34,15 +34,14 @@ struct CheckInView: View {
             .navigationTitle("Check in")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // .cancellationAction forces a fixed circle in iOS 26, which mangled the text pill
+                // Clear glass X on the left, same as the system back button
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Cancel", systemImage: "xmark") {
                         Task { await recorder.stop() }
                         dismiss()
                     }
-                    .buttonStyle(InkCircleStyle())
+                    .tint(Theme.ink)
                 }
-                .sharedBackgroundVisibility(.hidden)
                 ToolbarItem(placement: .topBarTrailing) {
                     switch stage {
                     case .compose:
@@ -111,9 +110,9 @@ struct CheckInView: View {
         } label: {
             Image(systemName: recorder.isRecording ? "stop.fill" : "mic.fill")
                 .font(.title)
-                .foregroundStyle(Theme.onInk)
+                .foregroundStyle(Theme.onPrimary)
                 .frame(width: 72, height: 72)
-                .background(recorder.isRecording ? Theme.warning : Theme.ink, in: .circle)
+                .background(recorder.isRecording ? Theme.warning : Theme.primary, in: .circle)
                 .symbolEffect(.pulse, isActive: recorder.isRecording)
         }
         .disabled(!SpeechRecorder.isAvailable || recorder.isPreparing)

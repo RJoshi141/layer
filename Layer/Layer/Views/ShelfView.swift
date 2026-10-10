@@ -8,6 +8,7 @@ struct ShelfView: View {
     @Environment(ProfileStore.self) private var profileStore
     @State private var isAdding = false
     @State private var isEditingProfile = false
+    @State private var isShowingTour = false
     @State private var filter: ProductCategory?
 
     private var shown: [Product] {
@@ -49,8 +50,18 @@ struct ShelfView: View {
             .navigationDestination(for: Product.self) { ProductDetailView(product: $0) }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("My skin", systemImage: "person") { isEditingProfile = true }
-                        .buttonStyle(InkCircleStyle())
+                    // Profile menu: edit skin answers or replay the intro tour
+                    Menu {
+                        Button("My skin", systemImage: "person") { isEditingProfile = true }
+                        Button("How Layer works", systemImage: "sparkles") { isShowingTour = true }
+                    } label: {
+                        Image(systemName: "person")
+                            .font(.system(size: 15, weight: .medium))
+                            .foregroundStyle(Theme.onPrimary)
+                            .frame(width: 38, height: 38)
+                            .background(Theme.primary, in: .circle)
+                    }
+                    .accessibilityLabel("Profile")
                 }
                 .sharedBackgroundVisibility(.hidden)
                 ToolbarItem(placement: .primaryAction) {
@@ -68,6 +79,9 @@ struct ShelfView: View {
             }
             .sheet(isPresented: $isEditingProfile) {
                 OnboardingView(initial: profileStore.profile) { profileStore.save($0) }
+            }
+            .fullScreenCover(isPresented: $isShowingTour) {
+                IntroTour { isShowingTour = false }
             }
         }
     }
@@ -181,7 +195,7 @@ struct ProductRow: View {
                 if !actives.isEmpty {
                     Text(actives.prefix(3).map(\.name).joined(separator: " · "))
                         .font(Theme.caption)
-                        .foregroundStyle(Theme.olive)
+                        .foregroundStyle(Theme.primary)
                         .lineLimit(1)
                 } else {
                     Text(product.category.label)
@@ -222,11 +236,14 @@ struct ProductThumbnail: View {
         ZStack {
             Theme.card
             if let data = product.imageData, let image = UIImage(data: data) {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
+                // Clear cutouts float whole on the sage tile, full photos fill it
+                if image.hasAlpha {
+                    Image(uiImage: image).resizable().scaledToFit().padding(size * 0.08)
+                } else {
+                    Image(uiImage: image).resizable().scaledToFill()
+                }
             } else {
-                LayerIcon(name: product.category.iconName, size: size * 0.42)
+                LayerIcon(name: product.category.iconName, size: size * 0.6)
                     .foregroundStyle(Theme.ink.opacity(0.6))
             }
         }
@@ -244,13 +261,13 @@ struct FilterChip: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 6) {
-                if let icon { LayerIcon(name: icon, size: 16) }
-                Text(title).font(.system(size: 13, weight: .medium))
+                if let icon { LayerIcon(name: icon, size: 24) }
+                Text(title).font(.system(size: 14, weight: .medium))
             }
-            .foregroundStyle(isOn ? Theme.onInk : Theme.ink)
-            .padding(.horizontal, 14)
-            .frame(height: 36)
-            .background(isOn ? Theme.ink : Theme.card, in: .capsule)
+            .foregroundStyle(isOn ? Theme.onPrimary : Theme.ink)
+            .padding(.horizontal, 16)
+            .frame(height: 44)
+            .background(isOn ? Theme.primary : Theme.card, in: .capsule)
         }
         .buttonStyle(.plain)
         .accessibilityAddTraits(isOn ? .isSelected : [])

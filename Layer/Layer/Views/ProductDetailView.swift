@@ -90,10 +90,8 @@ struct ProductDetailView: View {
                 ReviewProductView(result: ScanResult(product: product), existing: product) { isEditing = false }
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            Button("Cancel", systemImage: "xmark") { isEditing = false }
-                                .buttonStyle(InkCircleStyle())
+                            Button("Cancel", systemImage: "xmark") { isEditing = false }.tint(Theme.ink)
                         }
-                        .sharedBackgroundVisibility(.hidden)
                     }
             }
         }
@@ -208,8 +206,13 @@ struct ProductDetailView: View {
         case .good(let until): ("Good to use", "Fresh until \(until.formatted(.dateTime.month(.abbreviated).year()))", Theme.olive)
         case .notOpened: ("Sealed", "Clock starts when you open it", Theme.olive)
         }
+        let isFresh: Bool = switch product.expiryStatus {
+        case .good, .notOpened: true
+        default: false
+        }
         return VStack(alignment: .leading, spacing: 8) {
             LayerIcon(name: "glow", size: 20)
+                .foregroundStyle(isFresh ? Theme.lime : Theme.oliveText)   // lime glint on forest
             Spacer(minLength: 0)
             Text(title).font(.system(size: 14, weight: .semibold))
             Text(value).font(.system(size: 11)).opacity(0.85).lineLimit(3)
@@ -231,23 +234,16 @@ struct ProductDetailView: View {
             ScrollView(.horizontal) {
                 HStack(spacing: 12) {
                     ForEach(product.statedActives, id: \.self) { stated in
-                        IngredientCard(name: stated, summary: "Strength printed on the label.", icon: "serum")
+                        IngredientCard(name: stated, summary: "Strength printed on the label.", icon: "ingredient")
                     }
                     ForEach(actives) { active in
-                        IngredientCard(name: active.name, summary: active.summary, icon: icon(for: active))
+                        IngredientCard(name: active.name, summary: active.summary, icon: "ingredient")
                     }
                 }
                 .padding(.horizontal, 20)
             }
             .scrollIndicators(.hidden)
         }
-    }
-
-    private func icon(for ref: IngredientReference) -> String {
-        if !Set(ref.tags).isDisjoint(with: ["aha", "bha", "pha", "exfoliant"]) { return "glow" }
-        if ref.tags.contains("retinoid") { return "layers" }
-        if ref.tags.contains("vitamin-c") { return "drops" }
-        return "serum"
     }
 
     // MARK: - Details accordions
@@ -339,10 +335,10 @@ private struct RoutineToggle: View {
                     .font(.system(size: 12, weight: .semibold))
                     .contentTransition(.symbolEffect(.replace))
             }
-            .foregroundStyle(isOn ? Theme.onInk : Theme.ink)
+            .foregroundStyle(isOn ? Theme.onPrimary : Theme.ink)
             .padding(.horizontal, 18)
             .frame(maxWidth: .infinity, minHeight: 52)
-            .background(isOn ? Theme.ink : Theme.card, in: .capsule)
+            .background(isOn ? Theme.primary : Theme.card, in: .capsule)
             .contentShape(.capsule)
         }
         .buttonStyle(.plain)

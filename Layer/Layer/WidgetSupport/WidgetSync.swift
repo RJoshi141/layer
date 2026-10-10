@@ -8,6 +8,7 @@ nonisolated struct WidgetSnapshot: Codable, Equatable, Sendable {
     nonisolated struct Step: Codable, Equatable, Sendable {
         let name: String
         let symbol: String
+        let icon: String          // line icon name, the widget has its own copy of the icon set
         let isExpired: Bool
     }
 
@@ -45,8 +46,8 @@ extension WidgetSnapshot {
         }
 
         return WidgetSnapshot(
-            morning: steps(.am).map { Step(name: $0.name, symbol: $0.category.symbol, isExpired: $0.isExpired) },
-            night: steps(.pm).map { Step(name: $0.name, symbol: $0.category.symbol, isExpired: $0.isExpired) },
+            morning: steps(.am).map { Step(name: $0.name, symbol: $0.category.symbol, icon: $0.category.iconName, isExpired: $0.isExpired) },
+            night: steps(.pm).map { Step(name: $0.name, symbol: $0.category.symbol, icon: $0.category.iconName, isExpired: $0.isExpired) },
             morningHeadsUp: headsUp(.am),
             nightHeadsUp: headsUp(.pm)
         )

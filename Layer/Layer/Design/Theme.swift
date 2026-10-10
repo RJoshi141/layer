@@ -2,22 +2,32 @@ import CoreText
 import SwiftUI
 import UIKit
 
-// Layer's design system. Warm cream pages, sand cards, olive accents, espresso buttons.
+// Layer's design system. Sage-white pages, sage cards, olive controls, forest feature tiles, lime calls to action.
 // Serif for product names, bold two-tone sans for section titles, bracket labels like "[Serum]".
 enum Theme {
     // MARK: Colors (each one adapts to dark mode)
 
-    static let page = Color(light: 0xFAF6F0, dark: 0x161513)        // cream background
-    static let card = Color(light: 0xF1E9DE, dark: 0x22201C)        // sand surfaces, product image panels
-    static let olive = Color(light: 0x6B7256, dark: 0xB9C29E)       // accent, feature tiles
-    static let oliveText = Color(light: 0xF6F3EA, dark: 0x1A1C14)   // text on olive tiles
-    static let ink = Color(light: 0x2A1E1B, dark: 0xF3EEE6)         // espresso: text + primary buttons
-    static let onInk = Color(light: 0xFAF6F0, dark: 0x1A1614)       // text on primary buttons
-    static let muted = Color(light: 0x8A8178, dark: 0x9C948A)       // secondary text
-    static let faint = Color(light: 0xBDB5AB, dark: 0x5E5850)       // second line of two-tone titles
-    static let hairline = Color(light: 0x2A1E1B, dark: 0xF3EEE6).opacity(0.1)
+    static let page = Color(light: 0xF3F4EF, dark: 0x121611)        // sage-white background
+    static let card = Color(light: 0xE4E7DC, dark: 0x1E231D)        // sage surfaces, product image panels
+    static let ink = Color(light: 0x1F261F, dark: 0xEDF0E6)         // deep forest text
+    static let muted = Color(light: 0x737A6D, dark: 0x9AA192)       // secondary text
+    static let faint = Color(light: 0xADB3A4, dark: 0x5A6156)       // second line of two-tone titles
+    static let hairline = Color(light: 0x1F261F, dark: 0xEDF0E6).opacity(0.1)
+
+    // Dark green: toolbar circles, tab pill, toggles, selected choices
+    static let primary = Color(light: 0x2F3D2C, dark: 0xA9B394)
+    static let onPrimary = Color(light: 0xF3F4EF, dark: 0x141812)
+    // Forest: feature tiles, like the dark bands in the reference
+    static let olive = Color(light: 0x2A3328, dark: 0x2F3A2D)
+    static let oliveText = Color(light: 0xEDF0E6, dark: 0xEDF0E6)
+    // Lime: the one loud color, for main calls to action and highlights on forest
+    static let lime = Color(light: 0xC4D97C, dark: 0xC4D97C)
+    static let onLime = Color(light: 0x1F261F, dark: 0x1F261F)
+
     static let warning = Color(light: 0xB4602F, dark: 0xE09A6A)
-    static let good = Color(light: 0x5E7350, dark: 0xA9C29A)
+    static let good = Color(light: 0x5C7A45, dark: 0xA9C88A)
+
+    static let onInk = onPrimary   // old name, kept so nothing breaks
 
     // MARK: Type
 
@@ -151,26 +161,26 @@ struct Hairline: View {
     }
 }
 
-// Espresso block button, full width
+// Lime block button, full width, like the reference's "Add to cart"
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: 15, weight: .medium))
-            .foregroundStyle(Theme.onInk)
+            .foregroundStyle(Theme.onLime)
             .frame(maxWidth: .infinity, minHeight: 52)
-            .background(Theme.ink.opacity(configuration.isPressed ? 0.8 : 1), in: .rect(cornerRadius: 26))
+            .background(Theme.lime.opacity(configuration.isPressed ? 0.8 : 1), in: .rect(cornerRadius: 26))
             .contentShape(.rect)
     }
 }
 
-// Small espresso pill for toolbar actions (Cancel, Save, Done...). Same look as the big button.
+// Small olive pill for toolbar actions (Cancel, Save, Done...). Same look as the big button.
 struct InkPillStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         InkPill(configuration: configuration, isCircle: false)
     }
 }
 
-// Espresso circle for icon-only toolbar actions (+, mic, profile)
+// Olive circle for icon-only toolbar actions (+, mic, profile)
 struct InkCircleStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         InkPill(configuration: configuration, isCircle: true)
@@ -189,7 +199,7 @@ private struct InkPill: View {
                     .labelStyle(.iconOnly)
                     .font(.system(size: 15, weight: .medium))
                     .frame(width: 38, height: 38)
-                    .background(Theme.ink, in: .circle)
+                    .background(Theme.primary, in: .circle)
             } else {
                 configuration.label
                     .labelStyle(.titleOnly)
@@ -198,10 +208,10 @@ private struct InkPill: View {
                     .fixedSize()                      // never wrap ("Edi t")
                     .padding(.horizontal, 16)
                     .frame(height: 36)
-                    .background(Theme.ink, in: .capsule)
+                    .background(Theme.primary, in: .capsule)
             }
         }
-        .foregroundStyle(Theme.onInk)
+        .foregroundStyle(Theme.onPrimary)
         .opacity(isEnabled ? (configuration.isPressed ? 0.8 : 1) : 0.35)
         .contentShape(isCircle ? AnyShape(.circle) : AnyShape(.capsule))
     }
@@ -227,9 +237,9 @@ struct SquareToggleStyle: ButtonStyle {
 
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .foregroundStyle(isOn ? Theme.onInk : Theme.ink)
+            .foregroundStyle(isOn ? Theme.onPrimary : Theme.ink)
             .frame(width: 52, height: 52)
-            .background(isOn ? Theme.ink : Theme.card, in: .rect(cornerRadius: 14))
+            .background(isOn ? Theme.primary : Theme.card, in: .rect(cornerRadius: 14))
             .opacity(configuration.isPressed ? 0.75 : 1)
     }
 }

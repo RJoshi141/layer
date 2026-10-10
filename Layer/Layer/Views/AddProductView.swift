@@ -30,10 +30,9 @@ struct AddProductView: View {
         NavigationStack {
             content
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button("Cancel", systemImage: "xmark") { dismiss() }.buttonStyle(InkCircleStyle())
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button("Cancel", systemImage: "xmark") { dismiss() }.tint(Theme.ink)
                     }
-                    .sharedBackgroundVisibility(.hidden)
                 }
         }
         .fullScreenCover(isPresented: $showCamera) {
