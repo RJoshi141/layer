@@ -17,6 +17,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18DB3A3C30785BE00030AC4D"
                BuildableName = "Layer.app"
+               BlueprintName = "Layer"
                ReferencedContainer = "container:Layer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -36,6 +37,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18DB3A4B30785BE10030AC4D"
                BuildableName = "LayerTests.xctest"
+               BlueprintName = "LayerTests"
                ReferencedContainer = "container:Layer.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -46,6 +48,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18DB3A5530785BE10030AC4D"
                BuildableName = "LayerUITests.xctest"
+               BlueprintName = "LayerUITests"
                ReferencedContainer = "container:Layer.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -68,6 +71,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18DB3A3C30785BE00030AC4D"
             BuildableName = "Layer.app"
+            BlueprintName = "Layer"
             ReferencedContainer = "container:Layer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,6 +88,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18DB3A3C30785BE00030AC4D"
             BuildableName = "Layer.app"
+            BlueprintName = "Layer"
             ReferencedContainer = "container:Layer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
